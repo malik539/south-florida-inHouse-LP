@@ -6,8 +6,12 @@ no build step, no npm install. Serve the directory from any static host.
 
 ```
 index.html          60 KB, self-contained
-assets/images/      authentic campaign assets (see assets/images/README.md)
+assets/images/      logo.png, doctor.webp/.jpg, og-image.jpg, favicon.png
 ```
+
+First render pulls 60 KB of HTML plus 30 KB of images (logo 12 KB, portrait
+12 KB WebP, favicon 5 KB). No external requests at all — no fonts, no CDN,
+no third-party JS.
 
 Source of truth:
 `https://smilehub.southfloridadentalcenter.com/in-house-yearly-dental-plan-campaign`
@@ -21,13 +25,14 @@ ratings or review counts beyond the 4.9 (333) the source itself displays.
 
 1. **Confirm the Periodontal Plan disclaimer** — see *Open question* below.
    This is the one blocking item.
-2. Drop the real assets into `assets/images/` (`logo.svg`, `hero.webp`,
-   `office.webp`, `doctor.webp`, `og-image.jpg`, `favicon.png`). Until then
-   the page hides missing images rather than showing broken ones.
-3. Paste the GTM / Google Ads / GA4 container into the marked slot in `<head>`.
-4. Confirm the brand hex values in `:root` against the live LP's CSS. They
-   were sampled from the logo artwork, not read from the source stylesheet
-   (the host was unreachable from the build environment).
+2. Paste the GTM / Google Ads / GA4 container into the marked slot in `<head>`.
+3. Remove `<meta name="robots" content="noindex">` if the campaign wants the
+   page indexed (PPC pages are often left noindex on purpose).
+
+Assets are in place. Brand colours are now the real ones, keyed out of the
+supplied logo artwork: `--primary: #124f7f`, `--secondary: #999999`. Every
+text/background pair on the page passes WCAG AA (lowest is 5.53:1, muted text
+on the tinted background).
 
 ## Open question — needs the practice to confirm
 
@@ -65,6 +70,29 @@ clicks — as written it will suppress conversions on the higher-priced plan.
   hand-transcribed; the "Posted on Google" attribution is kept as text. Wire
   the real permalinks in if you want them clickable.
 
+## Hero: no pricing, portrait instead
+
+At the practice's request the hero carries no plan or payment pricing. It
+leads with the headline, the four plan value points, Book Appointment and Call
+Now, the 4.9 (333) rating, and Dr. Cohen's portrait with a glass caption
+naming him and his title.
+
+Worth knowing: visitors searching cost-intent terms ("dental plan price",
+"how much is a dental plan") no longer see a number above the fold, which
+usually costs some conversion rate on paid traffic. Pricing is still the
+fourth block on the page and reachable in one scroll. If you want it back
+above the fold without a pricing card, the lightest option is a single line
+under the CTAs — say "Plans from $299/yr" — rather than restoring the card.
+
+## Practice and dentist sections merged
+
+The source's "Trusted Care in Coral Springs" and "Meet Dr. Daniel Cohen"
+sections each had a photo slot. The practice supplied one authentic
+photograph, which now leads the hero, so the two sections are combined into a
+single two-column text block with the CTAs beneath. Both headings and all copy
+are the source's own; nothing was filled with stock imagery. If you send an
+office interior shot, the block can split back into two image sections.
+
 ## No lead form — by design
 
 The source campaign page has no lead form. Its conversion flow is exactly two
@@ -85,7 +113,6 @@ so GTM can attribute which plan was clicked.
 | `header-book-cta` | book | — |
 | `hero-phone-cta` | phone | — |
 | `hero-book-cta` | book | — |
-| `hero-card-compare-cta` | navigate | — |
 | `silver-plan-cta` | phone | silver |
 | `silver-plan-book-cta` | book | silver |
 | `periodontal-plan-cta` | phone | periodontal |
@@ -94,6 +121,7 @@ so GTM can attribute which plan was clicked.
 | `mid-phone-cta` | phone | — |
 | `mid-book-cta` | book | — |
 | `doctor-book-cta` | book | — |
+| `trust-phone-cta` | phone | — |
 | `final-phone-cta` | phone | — |
 | `final-book-cta` | book | — |
 | `location-phone-cta` | phone | — |
@@ -104,16 +132,14 @@ so GTM can attribute which plan was clicked.
 
 ## Structure
 
-Minimal PPC header (no site nav) → hero with glass Silver-pricing card →
-trust strip → what the plan is → **plans & pricing** → how it works → why
-choose → an investment in your health → mid CTA → about the practice → meet
-Dr. Cohen → reviews → important plan details → final CTA → location → footer
-→ mobile sticky bar.
+Minimal PPC header (no site nav) → hero with portrait → trust strip → what
+the plan is → **plans & pricing** → how it works → why choose → an investment
+in your health → mid CTA → practice & Dr. Cohen → reviews → important plan
+details → final CTA → location → footer → mobile sticky bar.
 
-Pricing sits high: the Silver Plan's adult and child prices are in the hero
-card, and the full two-plan comparison is the fourth block on the page.
-Exclusions get a bordered amber panel inside each plan card, not grey
-footnotes, plus a consolidated *Important plan details* section.
+The full two-plan comparison is the fourth block on the page. Exclusions get a
+bordered amber panel inside each plan card, not grey footnotes, plus a
+consolidated *Important plan details* section.
 
 **Sections deliberately not built:** plan-vs-traditional-insurance (the source
 gives no factual comparison data, so per brief the section is skipped
@@ -130,11 +156,12 @@ source's own "Read more" behaviour.
   Appointment) is mobile-only, respects `env(safe-area-inset-bottom)`, and
   `body` carries matching bottom padding so it never covers content.
 - **Performance:** all CSS inline, one small script at end of body, system
-  font stack (zero font requests), no render-blocking resources, hero
-  preloaded with `fetchpriority="high"`, everything below the fold
-  `loading="lazy" decoding="async"` with explicit dimensions to hold CLS at
-  zero. Single ~60 KB document, no external requests at all.
-- **Glass:** header, hero offer card and sticky bar only, each with an opaque
+  font stack (zero font requests), no render-blocking resources. The portrait
+  is the LCP element: preloaded as WebP with `fetchpriority="high"`, served
+  through a `<picture>` with a JPEG fallback, and carrying explicit
+  `width`/`height` so CLS stays at zero. Everything else is `loading="lazy"
+  decoding="async"`.
+- **Glass:** header, portrait caption and sticky bar only, each with an opaque
   `rgba` fallback declared *before* the `@supports backdrop-filter` block.
 - **Accessibility:** semantic landmarks, one H1, no skipped heading levels,
   skip link, visible focus rings, `aria-expanded`/`aria-controls` on the
@@ -142,7 +169,9 @@ source's own "Read more" behaviour.
   for the address, `<time>` for hours, and a `prefers-reduced-motion` block
   that disables every reveal and transition. A `no-js` class on `<body>` is
   removed by the script, so review text is never clamped without JS and
-  reveal content is never hidden.
+  reveal content is never hidden. If an image ever fails to load the page
+  hides its wrapper, and the logo falls back to the practice name as styled
+  text, so nothing renders as a broken image.
 - **SEO:** descriptive title and meta description drawn from source copy,
   canonical pointing at the campaign URL, Open Graph basics, and `Dentist`
   JSON-LD carrying only verified name/phone/address/hours. `aggregateRating`

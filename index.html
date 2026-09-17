@@ -24,10 +24,10 @@
 <meta property="og:title" content="Save on Dental Care: Affordable Plans in Coral Springs, FL">
 <meta property="og:description" content="Get affordable dental plans in Coral Springs with South Florida Dental Center. Enjoy discounts, discounted services, and a healthy smile!">
 <meta property="og:image" content="assets/images/og-image.jpg">
-<meta name="theme-color" content="#1c5183">
+<meta name="theme-color" content="#124f7f">
 
 <link rel="icon" href="assets/images/favicon.png">
-<link rel="preload" as="image" href="assets/images/hero.webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/images/doctor.webp" type="image/webp" fetchpriority="high">
 
 <!-- Google Tag Manager / Google Ads / GA4 container goes here.
      No container ID was present on the source page, so none is hardcoded. -->
@@ -37,12 +37,12 @@
    1. DESIGN TOKENS — sampled from the South Florida Dental Center logo
    ========================================================================== */
 :root{
-  --primary:#1c5183;
-  --primary-dark:#143c62;
-  --primary-light:#2f6ea8;
-  --primary-tint:#eaf1f8;
-  --secondary:#97999b;
-  --accent:#2f6ea8;
+  --primary:#124f7f;
+  --primary-dark:#0d3a5e;
+  --primary-light:#1e6ba6;
+  --primary-tint:#e9f1f7;
+  --secondary:#999999;
+  --accent:#1e6ba6;
   --background:#f4f7fa;
   --surface:#ffffff;
   --surface-alt:#eef3f8;
@@ -140,9 +140,9 @@ section[id]{scroll-margin-top:92px}
 }
 .btn-primary{
   background:linear-gradient(180deg,var(--primary-light),var(--primary));
-  color:#fff;box-shadow:0 6px 18px rgba(28,81,131,.32);
+  color:#fff;box-shadow:0 6px 18px rgba(18,79,127,.32);
 }
-.btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 10px 26px rgba(28,81,131,.38)}
+.btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 10px 26px rgba(18,79,127,.38)}
 .btn-primary:active{transform:translateY(0)}
 .btn-secondary{background:var(--surface);color:var(--primary);border-color:var(--primary)}
 .btn-secondary:hover{background:var(--primary-tint);transform:translateY(-2px)}
@@ -187,13 +187,12 @@ section[id]{scroll-margin-top:92px}
 .hero{
   position:relative;overflow:hidden;padding:clamp(34px,4.5vw,60px) 0 clamp(44px,6vw,72px);
   background:
-    radial-gradient(900px 420px at 84% -10%,rgba(47,110,168,.17),transparent 60%),
-    radial-gradient(700px 380px at 4% 100%,rgba(151,153,155,.18),transparent 62%),
+    radial-gradient(900px 420px at 84% -10%,rgba(30,107,166,.17),transparent 60%),
+    radial-gradient(700px 380px at 4% 100%,rgba(153,153,153,.18),transparent 62%),
     linear-gradient(180deg,#fdfeff,var(--background));
 }
 .hero-grid{display:grid;gap:clamp(26px,4vw,48px);align-items:center}
 @media (min-width:980px){.hero-grid{grid-template-columns:1.05fr .95fr;align-items:start}}
-.hero-aside{display:flex;flex-direction:column;gap:18px}
 .hero h1{margin-bottom:14px}
 .hero-sub{font-size:clamp(1.03rem,1.5vw,1.17rem);color:var(--muted-text);max-width:34em;margin-bottom:20px}
 .hero-points{display:grid;gap:10px;margin:0 0 24px}
@@ -210,29 +209,27 @@ section[id]{scroll-margin-top:92px}
 .check{flex:none;width:22px;height:22px;border-radius:50%;background:var(--primary-tint);display:grid;place-items:center;margin-top:1px}
 .check svg{width:13px;height:13px;fill:var(--primary)}
 
-.offer-card{border-radius:var(--radius-lg);padding:clamp(22px,3vw,30px)}
-.offer-flag{
-  display:inline-block;background:var(--primary);color:#fff;font-size:.75rem;font-weight:800;
-  letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:var(--radius-pill);margin-bottom:12px;
+.hero-portrait{
+  position:relative;margin:0;max-width:390px;justify-self:center;width:100%;
 }
-.offer-card h2{font-size:1.32rem;margin-bottom:12px}
-.price-split{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:4px}
-.price-block{flex:1 1 130px}
-.price-block .price-who{font-size:.8rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted-text)}
-.price{font-size:clamp(2.1rem,5.4vw,2.7rem);font-weight:800;letter-spacing:-.03em;color:var(--primary);line-height:1.05;display:block}
-.price-freq{font-weight:700;color:var(--muted-text);font-size:.95rem}
-.offer-extra{font-size:.93rem;color:var(--muted-text);margin:8px 0 0}
-.offer-list{display:grid;gap:10px;margin:18px 0 22px;padding-top:18px;border-top:1px solid var(--line)}
-.offer-list li{display:flex;gap:10px;align-items:flex-start;font-size:.96rem}
-
-.hero-media img{
-  width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);
-  aspect-ratio:16/10;object-fit:cover;background:var(--surface-alt);
+/* Soft brand glow for depth — deliberately blurred so it never reads as a
+   second card edge behind the portrait. */
+.hero-portrait::before{
+  content:"";position:absolute;inset:8% -7% -6% -7%;border-radius:50%;
+  background:radial-gradient(60% 60% at 50% 60%,rgba(18,79,127,.30),rgba(18,79,127,0) 72%);
+  filter:blur(26px);z-index:0;
 }
-.hero-media.is-missing{display:none}
-/* One source order at every breakpoint — headline & CTAs, then pricing,
-   then the photo. On desktop the pricing card heads the right-hand column so
-   it lands above the fold; on mobile the same order stacks correctly. */
+.hero-portrait img{
+  position:relative;width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);
+  aspect-ratio:1/1;object-fit:cover;object-position:50% 22%;background:var(--surface-alt);
+}
+.hero-portrait.is-missing{display:none}
+.portrait-cap{
+  position:relative;margin:-38px 14px 0;padding:13px 18px;border-radius:var(--radius);
+  font-size:.92rem;color:var(--muted-text);line-height:1.35;
+}
+.portrait-cap strong{display:block;font-size:1.04rem;color:var(--text)}
+@media (min-width:980px){.hero-portrait{max-width:400px}}
 
 /* ==========================================================================
    7. TRUST STRIP
@@ -336,10 +333,17 @@ section[id]{scroll-margin-top:92px}
 /* ==========================================================================
    12. TRUST / DOCTOR
    ========================================================================== */
-.trust-grid{display:grid;gap:clamp(24px,4vw,44px);align-items:center}
-@media (min-width:900px){.trust-grid{grid-template-columns:.9fr 1.1fr}}
-.trust-media img{border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--surface-alt)}
-.trust-media.is-missing{display:none}
+.trust-cols{display:grid;gap:clamp(26px,4vw,44px)}
+@media (min-width:900px){.trust-cols{grid-template-columns:repeat(2,1fr)}}
+.trust-col{
+  background:var(--background);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:clamp(22px,2.8vw,32px);
+}
+.trust-col h2{font-size:clamp(1.4rem,2.6vw,1.85rem)}
+.trust-col p{color:var(--muted-text);font-size:1rem}
+.trust-col p:last-of-type{margin-bottom:0}
+.trust-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:clamp(24px,3vw,32px)}
+.trust-cta .btn{flex:1 1 240px;max-width:330px}
 .creds{display:grid;gap:10px;margin:20px 0 0}
 .creds li{display:flex;gap:11px;align-items:flex-start;font-weight:600}
 
@@ -439,7 +443,7 @@ section[id]{scroll-margin-top:92px}
 <header class="site-header">
   <div class="header-inner container">
     <div class="header-logo" data-fallback-text>
-      <img src="assets/images/logo.svg" alt="South Florida Dental Center" width="230" height="72" fetchpriority="high" decoding="async">
+      <img src="assets/images/logo.png" alt="South Florida Dental Center" width="230" height="72" fetchpriority="high" decoding="async">
     </div>
     <div class="header-ctas">
       <a id="header-phone-cta" class="header-phone" data-conversion-type="phone" href="tel:+19547100383">
@@ -495,42 +499,19 @@ section[id]{scroll-margin-top:92px}
       </p>
     </div>
 
-    <div class="hero-aside">
-
-      <div class="offer-card glass">
-        <span class="offer-flag">Most Popular</span>
-        <h2>Silver Plan</h2>
-        <div class="price-split">
-          <div class="price-block">
-            <span class="price-who">Adult</span>
-            <span class="price">$349</span>
-            <span class="price-freq">/ yr</span>
-          </div>
-          <div class="price-block">
-            <span class="price-who">Child</span>
-            <span class="price">$299</span>
-            <span class="price-freq">/ yr</span>
-          </div>
-        </div>
-        <p class="offer-extra">Additional member: <strong>$329 / yr</strong></p>
-        <ul class="offer-list">
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>2 periodic exams + 2 limited/emergency exams per year</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>2 basic teeth cleanings</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Any required x-rays</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>20% off all dental services</li>
-        </ul>
-        <a id="hero-card-compare-cta" class="btn btn-primary btn-block" data-conversion-type="navigate"
-           href="#plans">See both plans</a>
-      </div>
-
-      <div class="hero-media" data-fallback-hide>
-        <!-- LCP image: preloaded, not lazy-loaded, explicit dimensions. -->
-        <img src="assets/images/hero.webp"
-             alt="Welcoming modern dental office interior at South Florida Dental Center in Coral Springs"
-             width="880" height="550" fetchpriority="high" decoding="async">
-      </div>
-
-    </div>
+    <figure class="hero-portrait" data-fallback-hide>
+      <!-- LCP image: preloaded, not lazy-loaded, explicit dimensions. -->
+      <picture>
+        <source srcset="assets/images/doctor.webp" type="image/webp">
+        <img src="assets/images/doctor.jpg"
+             alt="Dr. Daniel Cohen, General &amp; Cosmetic Dentist, at South Florida Dental Center in Coral Springs"
+             width="364" height="362" fetchpriority="high" decoding="async">
+      </picture>
+      <figcaption class="portrait-cap glass">
+        <strong>Dr. Daniel Cohen</strong>
+        General &amp; Cosmetic Dentist
+      </figcaption>
+    </figure>
 
   </div>
 </section>
@@ -744,46 +725,49 @@ section[id]{scroll-margin-top:92px}
   </div>
 </section>
 
-<!-- ========================= ABOUT THE PRACTICE ======================== -->
-<section aria-labelledby="about-title">
-  <div class="container trust-grid">
-    <div class="trust-media" data-fallback-hide>
-      <img src="assets/images/office.webp"
-           alt="Welcoming modern dental office interior at South Florida Dental Center"
-           width="720" height="720" loading="lazy" decoding="async">
-    </div>
-    <div>
-      <span class="eyebrow">About Our Practice</span>
-      <h2 id="about-title">Trusted Care in Coral Springs</h2>
-      <p>At South Florida Dental Center, exceptional dentistry meets a genuinely comfortable experience. Dr. Daniel Cohen and our Coral Springs team provide comprehensive care, including preventive, restorative, and cosmetic dentistry, all in a modern, welcoming environment designed with your comfort in mind.</p>
-      <p>With advanced technology like 3D CAT scans and digital X-rays, a friendly and experienced staff, and hundreds of five-star reviews, we make it easy to look forward to your visit. Contact us today and see why patients across Coral Springs trust us with their smiles.</p>
-      <ul class="creds">
-        <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Compassionate &amp; Welcoming Environment</li>
-        <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Modern Treatment Solutions</li>
-      </ul>
-    </div>
-  </div>
-</section>
+<!-- =================== PRACTICE &amp; DENTIST (merged) ==================== -->
+<!--
+  The two source sections "Trusted Care in Coral Springs" and "Meet Dr. Daniel
+  Cohen" are combined into one two-column block. The practice supplied a single
+  authentic photograph (the portrait), which now leads the hero, so repeating
+  it here — or filling the slot with stock — was not an option. Both headings
+  and all copy are the source's own.
+-->
+<section class="alt-bg" aria-labelledby="about-title">
+  <div class="container">
+    <div class="trust-cols">
 
-<!-- ========================= MEET THE DENTIST ========================== -->
-<section class="alt-bg" aria-labelledby="doctor-title">
-  <div class="container trust-grid">
-    <div class="trust-media" data-fallback-hide>
-      <img src="assets/images/doctor.webp"
-           alt="Dr. Daniel Cohen, General &amp; Cosmetic Dentist at South Florida Dental Center"
-           width="720" height="720" loading="lazy" decoding="async">
+      <div class="trust-col">
+        <span class="eyebrow">About Our Practice</span>
+        <h2 id="about-title">Trusted Care in Coral Springs</h2>
+        <p>At South Florida Dental Center, exceptional dentistry meets a genuinely comfortable experience. Dr. Daniel Cohen and our Coral Springs team provide comprehensive care, including preventive, restorative, and cosmetic dentistry, all in a modern, welcoming environment designed with your comfort in mind.</p>
+        <p>With advanced technology like 3D CAT scans and digital X-rays, a friendly and experienced staff, and hundreds of five-star reviews, we make it easy to look forward to your visit. Contact us today and see why patients across Coral Springs trust us with their smiles.</p>
+        <ul class="creds">
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Compassionate &amp; Welcoming Environment</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Modern Treatment Solutions</li>
+        </ul>
+      </div>
+
+      <div class="trust-col">
+        <span class="eyebrow">General &amp; Cosmetic Dentist</span>
+        <h2 id="doctor-title">Meet Dr. Daniel Cohen</h2>
+        <p>Dr. Daniel Cohen earned his Doctorate of Dental Surgery from New York University College of Dentistry after completing his Biology degree at Pennsylvania State University. He is dedicated to providing personalized dental care with a strong focus on aesthetics, precision, and patient comfort. Outside the office, he enjoys painting, exercising, and spending time with his family.</p>
+        <ul class="creds">
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Doctorate of Dental Surgery, NYU</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>B.S. in Biology, Penn State University</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Focus on Aesthetics &amp; Patient Comfort</li>
+        </ul>
+      </div>
+
     </div>
-    <div>
-      <span class="eyebrow">General &amp; Cosmetic Dentist</span>
-      <h2 id="doctor-title">Meet Dr. Daniel Cohen</h2>
-      <p>Dr. Daniel Cohen earned his Doctorate of Dental Surgery from New York University College of Dentistry after completing his Biology degree at Pennsylvania State University. He is dedicated to providing personalized dental care with a strong focus on aesthetics, precision, and patient comfort. Outside the office, he enjoys painting, exercising, and spending time with his family.</p>
-      <ul class="creds">
-        <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Doctorate of Dental Surgery, NYU</li>
-        <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>B.S. in Biology, Penn State University</li>
-        <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Focus on Aesthetics &amp; Patient Comfort</li>
-      </ul>
+
+    <div class="trust-cta">
       <a id="doctor-book-cta" class="btn btn-primary" data-conversion-type="book"
          href="https://app.nexhealth.com/appt/southfloridadentalcenter">Book Appointment</a>
+      <a id="trust-phone-cta" class="btn btn-secondary" data-conversion-type="phone" href="tel:+19547100383">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.2 2.3 3.1 4.2 5.4 5.4l1.8-1.8c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V19c0 .6-.4 1-1 1-8.3 0-15-6.7-15-15 0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .7-.2 1l-1.8 1.8z"/></svg>
+        Call Now 954-710-0383
+      </a>
     </div>
   </div>
 </section>
@@ -945,7 +929,7 @@ section[id]{scroll-margin-top:92px}
 <footer class="site-footer">
   <div class="container footer-inner">
     <div>
-      <span data-fallback-text><img src="assets/images/logo.svg" alt="South Florida Dental Center" width="210" height="66" loading="lazy" decoding="async"></span>
+      <span data-fallback-text><img src="assets/images/logo.png" alt="South Florida Dental Center" width="210" height="66" loading="lazy" decoding="async"></span>
       <p class="footer-legal" style="margin-top:14px">
         7522 Wiles Rd Ste #104, Coral Springs, FL 33067 &middot;
         <a id="footer-phone-cta" data-conversion-type="phone" href="tel:+19547100383">954-710-0383</a><br>
@@ -1007,7 +991,8 @@ section[id]{scroll-margin-top:92px}
      instead of rendering broken-image placeholders. Safe to keep: it only
      fires on a genuine load error. */
   Array.prototype.forEach.call(document.querySelectorAll('[data-fallback-hide] img'), function (img) {
-    function hide() { img.parentNode.classList.add('is-missing'); }
+    var wrap = img.closest('[data-fallback-hide]');
+    function hide() { if (wrap) { wrap.classList.add('is-missing'); } }
     if (img.complete && img.naturalWidth === 0) { hide(); }
     img.addEventListener('error', hide);
   });
