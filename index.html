@@ -114,6 +114,36 @@ section[id]{scroll-margin-top:92px}
   outline:3px solid var(--primary-light);outline-offset:3px;border-radius:4px;
 }
 
+/* --------------------------------------------------------------------------
+   Animated gradient text — used on the key phrase of each major heading.
+   Applied only to large, bold heading text: the lightest stop (#2a86c9) sits
+   at 3.92:1 on white, clearing the 3:1 AA bar for large text with margin.
+   Falls back to a flat brand colour where background-clip:text is missing,
+   so the words never render invisible.
+   -------------------------------------------------------------------------- */
+.grad{color:var(--primary)}
+.grad-light{color:#fff}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  .grad,.grad-light{
+    background-size:220% 100%;
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+    animation:grad-slide 7s linear infinite;
+  }
+  .grad{
+    background-image:linear-gradient(100deg,
+      var(--primary) 0%,#2a86c9 28%,var(--primary-light) 50%,var(--primary) 78%,var(--primary) 100%);
+  }
+  .grad-light{
+    background-image:linear-gradient(100deg,
+      #ffffff 0%,#bfe0ff 28%,#ffffff 52%,#ffffff 100%);
+  }
+}
+@keyframes grad-slide{from{background-position:0% 50%}to{background-position:-200% 50%}}
+@media (prefers-reduced-motion:reduce){
+  .grad,.grad-light{animation:none}
+}
+
 /* ==========================================================================
    3. LIQUID GLASS — opaque fallback declared first
    ========================================================================== */
@@ -365,9 +395,51 @@ section[id]{scroll-margin-top:92px}
 }
 .review-score{font-size:2.1rem;font-weight:800;color:var(--primary);line-height:1}
 .review-count{color:var(--muted-text);font-weight:600}
+/* Base / no-JS layout: a plain responsive grid. The ticker is opt-in and is
+   only switched on once the script has initialised it. */
 .reviews{display:grid;gap:18px}
 @media (min-width:700px){.reviews{grid-template-columns:repeat(2,1fr)}}
 @media (min-width:1050px){.reviews{grid-template-columns:repeat(3,1fr)}}
+.ticker{padding:0 var(--gutter)}
+.ticker-controls{display:none}
+
+/* --- Ticker mode (added by JS) --- */
+.ticker.is-ticker{
+  overflow-x:hidden;overflow-y:visible;padding:0;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+}
+.reviews.is-ticker{
+  display:flex;flex-wrap:nowrap;align-items:stretch;gap:18px;
+  width:max-content;will-change:transform;
+}
+/* While a review is open, cards size to content so only that one grows */
+.reviews.is-ticker.has-expanded{align-items:flex-start}
+.reviews.is-ticker .review{width:320px;flex:0 0 320px}
+@media (max-width:520px){.reviews.is-ticker .review{width:min(80vw,300px);flex:0 0 min(80vw,300px)}}
+
+.ticker-controls{justify-content:center;margin-top:24px}
+.ticker-controls.is-ticker{display:flex}
+.ticker-toggle{
+  display:inline-flex;align-items:center;gap:9px;font:inherit;font-size:.93rem;font-weight:700;
+  color:var(--primary);background:var(--surface);border:1.5px solid var(--line);
+  border-radius:var(--radius-pill);padding:10px 18px;min-height:44px;cursor:pointer;
+}
+.ticker-toggle:hover{background:var(--primary-tint);border-color:var(--primary)}
+.ticker-icon{
+  width:13px;height:14px;flex:none;background:currentColor;
+  clip-path:polygon(0 0,38% 0,38% 100%,0 100%,0 0,62% 0,100% 0,100% 100%,62% 100%);
+}
+.ticker-toggle[aria-pressed="true"] .ticker-icon{
+  clip-path:polygon(0 0,100% 50%,0 100%);
+}
+
+/* Reduced motion: never auto-scroll — hand the row over as a swipeable rail */
+@media (prefers-reduced-motion:reduce){
+  .ticker.is-ticker{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .reviews.is-ticker{transform:none!important}
+  .ticker-controls.is-ticker{display:none}
+}
 .review{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;margin:0}
 .review-body{margin:0 0 14px;font-size:.99rem}
 .review-body.clamped{
@@ -475,7 +547,7 @@ section[id]{scroll-margin-top:92px}
 
     <div class="hero-copy">
       <span class="eyebrow">Dental Plan in Coral Springs, FL</span>
-      <h1 id="hero-title">Save on Dental Care: Affordable Plans in Coral Springs, FL</h1>
+      <h1 id="hero-title">Save on <span class="grad">Dental Care</span>: Affordable Plans in Coral Springs, FL</h1>
       <p class="hero-sub">Get affordable dental plans in Coral Springs with South Florida Dental Center. Enjoy discounts, discounted services, and a healthy smile!</p>
 
       <ul class="hero-points">
@@ -517,12 +589,12 @@ section[id]{scroll-margin-top:92px}
                 srcset="assets/images/chairside-440.webp 440w, assets/images/chairside-800.webp 800w"
                 sizes="(min-width:980px) 400px, calc(100vw - 40px)">
         <img src="assets/images/chairside.jpg"
-             alt="Dr. Daniel Cohen showing a dental model to a patient at South Florida Dental Center in Coral Springs"
+             alt="A dentist showing a dental model to a patient at South Florida Dental Center in Coral Springs"
              width="800" height="800" fetchpriority="high" decoding="async">
       </picture>
       <figcaption class="hero-cap glass">
-        <strong>Dr. Daniel Cohen</strong>
-        General &amp; Cosmetic Dentist
+        <strong>South Florida Dental Center</strong>
+        Coral Springs, FL
       </figcaption>
     </figure>
 
@@ -543,7 +615,7 @@ section[id]{scroll-margin-top:92px}
 <section class="alt-bg" aria-labelledby="what-title">
   <div class="container">
     <div class="section-head">
-      <h2 id="what-title">In House Dental Plan</h2>
+      <h2 id="what-title">In House <span class="grad">Dental Plan</span></h2>
       <p>At South Florida Dental Center, we understand that not everyone has dental insurance. That&rsquo;s why we&rsquo;ve designed our in-house dental plans Florida residents can rely on, offering an effective alternative that can accommodate individuals and families alike.</p>
     </div>
   </div>
@@ -554,7 +626,7 @@ section[id]{scroll-margin-top:92px}
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Plans &amp; Pricing</span>
-      <h2 id="plans-title">Your Smile, Your Choice</h2>
+      <h2 id="plans-title">Your Smile, <span class="grad">Your Choice</span></h2>
     </div>
 
     <div class="plans reveal">
@@ -649,7 +721,7 @@ section[id]{scroll-margin-top:92px}
 <section class="alt-bg" aria-labelledby="how-title">
   <div class="container">
     <div class="section-head">
-      <h2 id="how-title">How Our Dental Plans Florida Work</h2>
+      <h2 id="how-title">How Our <span class="grad">Dental Plans Florida</span> Work</h2>
       <p>Joining is as simple as 1-2-3!</p>
     </div>
     <ol class="steps reveal">
@@ -677,7 +749,7 @@ section[id]{scroll-margin-top:92px}
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Our Commitment</span>
-      <h2 id="commit-title">Why Choose South Florida Dental Plans?</h2>
+      <h2 id="commit-title">Why Choose <span class="grad">South Florida Dental Plans</span>?</h2>
     </div>
     <ul class="commit reveal">
       <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>No Missing Tooth Clauses</li>
@@ -694,7 +766,7 @@ section[id]{scroll-margin-top:92px}
 <section class="alt-bg" aria-labelledby="invest-title">
   <div class="container">
     <div class="section-head">
-      <h2 id="invest-title">An Investment in Your Health</h2>
+      <h2 id="invest-title">An Investment in <span class="grad">Your Health</span></h2>
       <p>Oral health is crucial, but quality dental care can be costly, and insurance isn&rsquo;t always an option. That&rsquo;s why our dental plans at South Florida Dental Center are designed to fill the gap. Here are some benefits to consider:</p>
     </div>
     <ul class="grid grid-4 reveal">
@@ -725,7 +797,7 @@ section[id]{scroll-margin-top:92px}
 <!-- ========================== MID-PAGE CTA ============================= -->
 <section class="cta-band" aria-labelledby="midcta-title">
   <div class="container cta-inner">
-    <h2 id="midcta-title">Save on Dental Care in Coral Springs, FL</h2>
+    <h2 id="midcta-title">Save on <span class="grad-light">Dental Care</span> in Coral Springs, FL</h2>
     <p>Not sure which plan fits your family? Call and we&rsquo;ll help you choose.</p>
     <div class="cta-actions">
       <a id="mid-phone-cta" class="btn btn-primary" data-conversion-type="phone" href="tel:+19547100383">
@@ -751,7 +823,7 @@ section[id]{scroll-margin-top:92px}
     </figure>
     <div>
       <span class="eyebrow">About Our Practice</span>
-      <h2 id="about-title">Trusted Care in Coral Springs</h2>
+      <h2 id="about-title">Trusted Care in <span class="grad">Coral Springs</span></h2>
       <p>At South Florida Dental Center, exceptional dentistry meets a genuinely comfortable experience. Dr. Daniel Cohen and our Coral Springs team provide comprehensive care, including preventive, restorative, and cosmetic dentistry, all in a modern, welcoming environment designed with your comfort in mind.</p>
       <p>With advanced technology like 3D CAT scans and digital X-rays, a friendly and experienced staff, and hundreds of five-star reviews, we make it easy to look forward to your visit. Contact us today and see why patients across Coral Springs trust us with their smiles.</p>
       <ul class="creds">
@@ -775,7 +847,7 @@ section[id]{scroll-margin-top:92px}
     </figure>
     <div>
       <span class="eyebrow">General &amp; Cosmetic Dentist</span>
-      <h2 id="doctor-title">Meet Dr. Daniel Cohen</h2>
+      <h2 id="doctor-title">Meet <span class="grad">Dr. Daniel Cohen</span></h2>
       <p>Dr. Daniel Cohen earned his Doctorate of Dental Surgery from New York University College of Dentistry after completing his Biology degree at Pennsylvania State University. He is dedicated to providing personalized dental care with a strong focus on aesthetics, precision, and patient comfort. Outside the office, he enjoys painting, exercising, and spending time with his family.</p>
       <ul class="creds">
         <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Doctorate of Dental Surgery, NYU</li>
@@ -799,7 +871,7 @@ section[id]{scroll-margin-top:92px}
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Real Patient Experiences</span>
-      <h2 id="reviews-title">What Our Patients Say</h2>
+      <h2 id="reviews-title">What <span class="grad">Our Patients</span> Say</h2>
     </div>
 
     <p class="review-summary">
@@ -814,7 +886,10 @@ section[id]{scroll-margin-top:92px}
       <span class="review-count">(333)</span>
     </p>
 
-    <div class="reviews reveal">
+  </div>
+
+  <div class="ticker" id="reviews-ticker">
+    <div class="reviews ticker-track reveal">
 
       <figure class="review">
         <p class="review-body" data-collapsible>I have been coming here for over 10 years and the staff is amazing even when Dr. Cohen took over everything transitioned smoothly. I would highly recommend this place. I had to remove a tooth and the staff made it as painless as possible.</p>
@@ -858,13 +933,20 @@ section[id]{scroll-margin-top:92px}
 
     </div>
   </div>
+
+  <div class="container ticker-controls">
+    <button class="ticker-toggle" type="button" aria-pressed="false" aria-controls="reviews-ticker">
+      <span class="ticker-icon" aria-hidden="true"></span>
+      <span class="ticker-label">Pause reviews</span>
+    </button>
+  </div>
 </section>
 
 <!-- ====================== IMPORTANT PLAN DETAILS ======================= -->
 <section aria-labelledby="details-title">
   <div class="container">
     <div class="section-head">
-      <h2 id="details-title">Important plan details</h2>
+      <h2 id="details-title">Important <span class="grad">plan details</span></h2>
       <p>These are the plan&rsquo;s stated terms. Please review them before you enroll.</p>
     </div>
     <div class="details-grid reveal">
@@ -894,7 +976,7 @@ section[id]{scroll-margin-top:92px}
 <!-- ============================ FINAL CTA ============================== -->
 <section class="cta-band" aria-labelledby="finalcta-title">
   <div class="container cta-inner">
-    <h2 id="finalcta-title">Unlock Your Healthy Smile with Our Dental Plans</h2>
+    <h2 id="finalcta-title">Unlock Your <span class="grad-light">Healthy Smile</span> with Our Dental Plans</h2>
     <p>Is your path to a healthier, more vibrant smile waiting behind one of our tailored dental plans? Don&rsquo;t delay!</p>
     <div class="cta-actions">
       <a id="final-phone-cta" class="btn btn-primary" data-conversion-type="phone" href="tel:+19547100383">
@@ -911,7 +993,7 @@ section[id]{scroll-margin-top:92px}
 <section id="location" aria-labelledby="location-title">
   <div class="container">
     <div class="section-head">
-      <h2 id="location-title">Location</h2>
+      <h2 id="location-title"><span class="grad">Location</span></h2>
     </div>
     <div class="contact-grid">
 
@@ -1032,6 +1114,87 @@ section[id]{scroll-margin-top:92px}
     img.addEventListener('error', swap);
   });
 
+  /* ---- Reviews ticker --------------------------------------------------
+     A conveyor rather than a duplicated marquee: the first card is moved to
+     the end once it has scrolled past, so every card on screen is the real,
+     interactive one — no clones to keep in sync and no aria-hidden copies
+     holding focusable buttons. Pauses on hover, on keyboard focus, while a
+     review is expanded, and via the explicit toggle (WCAG 2.2.2). Never runs
+     under prefers-reduced-motion, and never runs off-screen. */
+  (function () {
+    var ticker = document.getElementById('reviews-ticker');
+    if (!ticker) { return; }
+    var track = ticker.querySelector('.ticker-track');
+    var controls = document.querySelector('.ticker-controls');
+    var toggle = controls && controls.querySelector('.ticker-toggle');
+    if (!track || !track.children.length) { return; }
+
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    ticker.classList.add('is-ticker');
+    track.classList.add('is-ticker');
+    if (controls) { controls.classList.add('is-ticker'); }
+    if (reduce.matches) { return; }
+
+    var SPEED = 42;            /* px per second */
+    var offset = 0, last = 0, raf = null;
+    var hovered = false, focused = false, stopped = false, visible = true;
+
+    function gap() {
+      var g = parseFloat(getComputedStyle(track).columnGap);
+      return isNaN(g) ? 18 : g;
+    }
+    function paused() {
+      return hovered || focused || stopped || !visible ||
+             track.classList.contains('has-expanded');
+    }
+    function frame(now) {
+      var dt = last ? Math.min((now - last) / 1000, 0.05) : 0;
+      last = now;
+      if (!paused()) {
+        offset += SPEED * dt;
+        var first = track.firstElementChild;
+        var step = first.offsetWidth + gap();
+        while (offset >= step && track.children.length > 1) {
+          offset -= step;
+          track.appendChild(first);
+          first = track.firstElementChild;
+          step = first.offsetWidth + gap();
+        }
+        track.style.transform = 'translateX(' + (-offset) + 'px)';
+      }
+      raf = requestAnimationFrame(frame);
+    }
+    function start() { if (raf === null) { last = 0; raf = requestAnimationFrame(frame); } }
+    function stop() { if (raf !== null) { cancelAnimationFrame(raf); raf = null; } }
+
+    function setStopped(value) {
+      stopped = value;
+      if (!toggle) { return; }
+      toggle.setAttribute('aria-pressed', String(stopped));
+      toggle.querySelector('.ticker-label').textContent =
+        stopped ? 'Play reviews' : 'Pause reviews';
+    }
+
+    ticker.addEventListener('mouseenter', function () { hovered = true; });
+    ticker.addEventListener('mouseleave', function () { hovered = false; });
+    ticker.addEventListener('focusin', function () { focused = true; });
+    ticker.addEventListener('focusout', function () { focused = false; });
+    ticker.addEventListener('pointerdown', function () { setStopped(true); });
+
+    if (toggle) {
+      toggle.addEventListener('click', function () { setStopped(!stopped); });
+    }
+
+    /* Don't burn frames while the section is off-screen. */
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+        if (visible) { start(); } else { stop(); }
+      }, { threshold: 0 }).observe(ticker);
+    }
+    start();
+  })();
+
   /* ---- Long reviews: accessible expand/collapse ------------------------
      Mirrors the source page's own "Read more" behaviour. Review wording is
      never altered — only visually clamped. Without JS the full text shows. */
@@ -1054,6 +1217,11 @@ section[id]{scroll-margin-top:92px}
       btn.setAttribute('aria-expanded', String(!open));
       body.classList.toggle('clamped', open);
       btn.textContent = open ? 'Read more' : 'Show less';
+      var track = btn.closest('.ticker-track');
+      if (track) {
+        track.classList.toggle('has-expanded',
+          !!track.querySelector('.review-more[aria-expanded="true"]'));
+      }
     });
     body.parentNode.insertBefore(btn, body.nextSibling);
   });
