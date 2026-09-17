@@ -27,7 +27,9 @@
 <meta name="theme-color" content="#124f7f">
 
 <link rel="icon" href="assets/images/favicon.png">
-<link rel="preload" as="image" href="assets/images/doctor.webp" type="image/webp" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" fetchpriority="high"
+      imagesrcset="assets/images/chairside-440.webp 440w, assets/images/chairside-800.webp 800w"
+      imagesizes="(min-width:980px) 400px, calc(100vw - 40px)">
 
 <!-- Google Tag Manager / Google Ads / GA4 container goes here.
      No container ID was present on the source page, so none is hardcoded. -->
@@ -209,27 +211,45 @@ section[id]{scroll-margin-top:92px}
 .check{flex:none;width:22px;height:22px;border-radius:50%;background:var(--primary-tint);display:grid;place-items:center;margin-top:1px}
 .check svg{width:13px;height:13px;fill:var(--primary)}
 
-.hero-portrait{
-  position:relative;margin:0;max-width:390px;justify-self:center;width:100%;
+.hero-figure{
+  position:relative;margin:0;max-width:420px;justify-self:center;width:100%;
 }
 /* Soft brand glow for depth — deliberately blurred so it never reads as a
-   second card edge behind the portrait. */
-.hero-portrait::before{
+   second card edge behind the photo. */
+.hero-figure::before{
   content:"";position:absolute;inset:8% -7% -6% -7%;border-radius:50%;
   background:radial-gradient(60% 60% at 50% 60%,rgba(18,79,127,.30),rgba(18,79,127,0) 72%);
   filter:blur(26px);z-index:0;
 }
-.hero-portrait img{
-  position:relative;width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);
-  aspect-ratio:1/1;object-fit:cover;object-position:50% 22%;background:var(--surface-alt);
+.hero-figure picture{position:relative;display:block}
+.hero-figure img{
+  width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);
+  aspect-ratio:1/1;object-fit:cover;object-position:50% 42%;background:var(--surface-alt);
 }
-.hero-portrait.is-missing{display:none}
-.portrait-cap{
+.hero-figure.is-missing{display:none}
+.hero-cap{
   position:relative;margin:-38px 14px 0;padding:13px 18px;border-radius:var(--radius);
   font-size:.92rem;color:var(--muted-text);line-height:1.35;
 }
-.portrait-cap strong{display:block;font-size:1.04rem;color:var(--text)}
-@media (min-width:980px){.hero-portrait{max-width:400px}}
+.hero-cap strong{display:block;font-size:1.04rem;color:var(--text)}
+
+/* Two-column image + text trust sections */
+.trust-grid{display:grid;gap:clamp(24px,4vw,44px);align-items:center}
+@media (min-width:900px){.trust-grid{grid-template-columns:.85fr 1.15fr}}
+.trust-media{margin:0}
+.trust-media img{
+  width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);
+  aspect-ratio:1/1;object-fit:cover;background:var(--surface-alt);
+}
+.trust-media.is-missing{display:none}
+/* The portrait is 364px native — cap it so it is never upscaled */
+.trust-media-sm{max-width:400px}
+@media (min-width:900px){.trust-media-sm{margin-left:auto}}
+@media (min-width:900px){
+  /* Alternate the photo side so the two sections do not read as one block */
+  .trust-grid.reverse{grid-template-columns:1.15fr .85fr}
+  .trust-grid.reverse .trust-media{order:2}
+}
 
 /* ==========================================================================
    7. TRUST STRIP
@@ -333,17 +353,8 @@ section[id]{scroll-margin-top:92px}
 /* ==========================================================================
    12. TRUST / DOCTOR
    ========================================================================== */
-.trust-cols{display:grid;gap:clamp(26px,4vw,44px)}
-@media (min-width:900px){.trust-cols{grid-template-columns:repeat(2,1fr)}}
-.trust-col{
-  background:var(--background);border:1px solid var(--line);border-radius:var(--radius-lg);
-  padding:clamp(22px,2.8vw,32px);
-}
-.trust-col h2{font-size:clamp(1.4rem,2.6vw,1.85rem)}
-.trust-col p{color:var(--muted-text);font-size:1rem}
-.trust-col p:last-of-type{margin-bottom:0}
-.trust-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:clamp(24px,3vw,32px)}
-.trust-cta .btn{flex:1 1 240px;max-width:330px}
+.trust-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.trust-cta .btn{flex:1 1 220px;max-width:320px}
 .creds{display:grid;gap:10px;margin:20px 0 0}
 .creds li{display:flex;gap:11px;align-items:flex-start;font-weight:600}
 
@@ -499,15 +510,17 @@ section[id]{scroll-margin-top:92px}
       </p>
     </div>
 
-    <figure class="hero-portrait" data-fallback-hide>
-      <!-- LCP image: preloaded, not lazy-loaded, explicit dimensions. -->
+    <figure class="hero-figure" data-fallback-hide>
+      <!-- LCP image: preloaded, responsive, never lazy-loaded. -->
       <picture>
-        <source srcset="assets/images/doctor.webp" type="image/webp">
-        <img src="assets/images/doctor.jpg"
-             alt="Dr. Daniel Cohen, General &amp; Cosmetic Dentist, at South Florida Dental Center in Coral Springs"
-             width="364" height="362" fetchpriority="high" decoding="async">
+        <source type="image/webp"
+                srcset="assets/images/chairside-440.webp 440w, assets/images/chairside-800.webp 800w"
+                sizes="(min-width:980px) 400px, calc(100vw - 40px)">
+        <img src="assets/images/chairside.jpg"
+             alt="Dr. Daniel Cohen showing a dental model to a patient at South Florida Dental Center in Coral Springs"
+             width="800" height="800" fetchpriority="high" decoding="async">
       </picture>
-      <figcaption class="portrait-cap glass">
+      <figcaption class="hero-cap glass">
         <strong>Dr. Daniel Cohen</strong>
         General &amp; Cosmetic Dentist
       </figcaption>
@@ -725,55 +738,64 @@ section[id]{scroll-margin-top:92px}
   </div>
 </section>
 
-<!-- =================== PRACTICE &amp; DENTIST (merged) ==================== -->
-<!--
-  The two source sections "Trusted Care in Coral Springs" and "Meet Dr. Daniel
-  Cohen" are combined into one two-column block. The practice supplied a single
-  authentic photograph (the portrait), which now leads the hero, so repeating
-  it here — or filling the slot with stock — was not an option. Both headings
-  and all copy are the source's own.
--->
+<!-- ========================= ABOUT THE PRACTICE ======================== -->
 <section class="alt-bg" aria-labelledby="about-title">
-  <div class="container">
-    <div class="trust-cols">
-
-      <div class="trust-col">
-        <span class="eyebrow">About Our Practice</span>
-        <h2 id="about-title">Trusted Care in Coral Springs</h2>
-        <p>At South Florida Dental Center, exceptional dentistry meets a genuinely comfortable experience. Dr. Daniel Cohen and our Coral Springs team provide comprehensive care, including preventive, restorative, and cosmetic dentistry, all in a modern, welcoming environment designed with your comfort in mind.</p>
-        <p>With advanced technology like 3D CAT scans and digital X-rays, a friendly and experienced staff, and hundreds of five-star reviews, we make it easy to look forward to your visit. Contact us today and see why patients across Coral Springs trust us with their smiles.</p>
-        <ul class="creds">
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Compassionate &amp; Welcoming Environment</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Modern Treatment Solutions</li>
-        </ul>
-      </div>
-
-      <div class="trust-col">
-        <span class="eyebrow">General &amp; Cosmetic Dentist</span>
-        <h2 id="doctor-title">Meet Dr. Daniel Cohen</h2>
-        <p>Dr. Daniel Cohen earned his Doctorate of Dental Surgery from New York University College of Dentistry after completing his Biology degree at Pennsylvania State University. He is dedicated to providing personalized dental care with a strong focus on aesthetics, precision, and patient comfort. Outside the office, he enjoys painting, exercising, and spending time with his family.</p>
-        <ul class="creds">
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Doctorate of Dental Surgery, NYU</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>B.S. in Biology, Penn State University</li>
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Focus on Aesthetics &amp; Patient Comfort</li>
-        </ul>
-      </div>
-
+  <div class="container trust-grid">
+    <figure class="trust-media" data-fallback-hide>
+      <picture>
+        <source srcset="assets/images/office-720.webp" type="image/webp">
+        <img src="assets/images/office.jpg"
+             alt="A patient checking in with the front desk team at South Florida Dental Center in Coral Springs"
+             width="720" height="720" loading="lazy" decoding="async">
+      </picture>
+    </figure>
+    <div>
+      <span class="eyebrow">About Our Practice</span>
+      <h2 id="about-title">Trusted Care in Coral Springs</h2>
+      <p>At South Florida Dental Center, exceptional dentistry meets a genuinely comfortable experience. Dr. Daniel Cohen and our Coral Springs team provide comprehensive care, including preventive, restorative, and cosmetic dentistry, all in a modern, welcoming environment designed with your comfort in mind.</p>
+      <p>With advanced technology like 3D CAT scans and digital X-rays, a friendly and experienced staff, and hundreds of five-star reviews, we make it easy to look forward to your visit. Contact us today and see why patients across Coral Springs trust us with their smiles.</p>
+      <ul class="creds">
+        <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Compassionate &amp; Welcoming Environment</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Modern Treatment Solutions</li>
+      </ul>
     </div>
+  </div>
+</section>
 
-    <div class="trust-cta">
-      <a id="doctor-book-cta" class="btn btn-primary" data-conversion-type="book"
-         href="https://app.nexhealth.com/appt/southfloridadentalcenter">Book Appointment</a>
-      <a id="trust-phone-cta" class="btn btn-secondary" data-conversion-type="phone" href="tel:+19547100383">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.2 2.3 3.1 4.2 5.4 5.4l1.8-1.8c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V19c0 .6-.4 1-1 1-8.3 0-15-6.7-15-15 0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .7-.2 1l-1.8 1.8z"/></svg>
-        Call Now 954-710-0383
-      </a>
+<!-- ========================= MEET THE DENTIST ========================== -->
+<section aria-labelledby="doctor-title">
+  <div class="container trust-grid reverse">
+    <figure class="trust-media trust-media-sm" data-fallback-hide>
+      <picture>
+        <source srcset="assets/images/doctor.webp" type="image/webp">
+        <img src="assets/images/doctor.jpg"
+             alt="Dr. Daniel Cohen, General &amp; Cosmetic Dentist at South Florida Dental Center"
+             width="364" height="362" loading="lazy" decoding="async">
+      </picture>
+    </figure>
+    <div>
+      <span class="eyebrow">General &amp; Cosmetic Dentist</span>
+      <h2 id="doctor-title">Meet Dr. Daniel Cohen</h2>
+      <p>Dr. Daniel Cohen earned his Doctorate of Dental Surgery from New York University College of Dentistry after completing his Biology degree at Pennsylvania State University. He is dedicated to providing personalized dental care with a strong focus on aesthetics, precision, and patient comfort. Outside the office, he enjoys painting, exercising, and spending time with his family.</p>
+      <ul class="creds">
+        <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Doctorate of Dental Surgery, NYU</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>B.S. in Biology, Penn State University</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Focus on Aesthetics &amp; Patient Comfort</li>
+      </ul>
+      <div class="trust-cta">
+        <a id="doctor-book-cta" class="btn btn-primary" data-conversion-type="book"
+           href="https://app.nexhealth.com/appt/southfloridadentalcenter">Book Appointment</a>
+        <a id="trust-phone-cta" class="btn btn-secondary" data-conversion-type="phone" href="tel:+19547100383">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.2 2.3 3.1 4.2 5.4 5.4l1.8-1.8c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V19c0 .6-.4 1-1 1-8.3 0-15-6.7-15-15 0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .7-.2 1l-1.8 1.8z"/></svg>
+          Call Now 954-710-0383
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============================= REVIEWS =============================== -->
-<section aria-labelledby="reviews-title">
+<section class="alt-bg" aria-labelledby="reviews-title">
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Real Patient Experiences</span>
@@ -839,7 +861,7 @@ section[id]{scroll-margin-top:92px}
 </section>
 
 <!-- ====================== IMPORTANT PLAN DETAILS ======================= -->
-<section class="alt-bg" aria-labelledby="details-title">
+<section aria-labelledby="details-title">
   <div class="container">
     <div class="section-head">
       <h2 id="details-title">Important plan details</h2>

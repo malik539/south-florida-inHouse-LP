@@ -5,13 +5,13 @@ vanilla JS block. No React/Vue/Next/Bootstrap/jQuery, no animation libraries,
 no build step, no npm install. Serve the directory from any static host.
 
 ```
-index.html          60 KB, self-contained
-assets/images/      logo.png, doctor.webp/.jpg, og-image.jpg, favicon.png
+index.html          58 KB, self-contained
+assets/images/      logo, three practice photos (WebP + JPEG), OG card, favicon
 ```
 
-First render pulls 60 KB of HTML plus 30 KB of images (logo 12 KB, portrait
-12 KB WebP, favicon 5 KB). No external requests at all — no fonts, no CDN,
-no third-party JS.
+First render pulls the HTML plus the logo, one hero WebP and the favicon —
+roughly 93 KB on a phone, 114 KB on desktop. No external requests at all: no
+fonts, no CDN, no third-party JS.
 
 Source of truth:
 `https://smilehub.southfloridadentalcenter.com/in-house-yearly-dental-plan-campaign`
@@ -29,10 +29,11 @@ ratings or review counts beyond the 4.9 (333) the source itself displays.
 3. Remove `<meta name="robots" content="noindex">` if the campaign wants the
    page indexed (PPC pages are often left noindex on purpose).
 
-Assets are in place. Brand colours are now the real ones, keyed out of the
-supplied logo artwork: `--primary: #124f7f`, `--secondary: #999999`. Every
-text/background pair on the page passes WCAG AA (lowest is 5.53:1, muted text
-on the tinted background).
+Assets are in place — the logo plus three authentic practice photographs.
+Brand colours are the real ones, keyed out of the supplied logo artwork:
+`--primary: #124f7f`, `--secondary: #999999`. Every text/background pair on
+the page passes WCAG AA (lowest is 5.53:1, muted text on the tinted
+background).
 
 ## Open question — needs the practice to confirm
 
@@ -74,8 +75,8 @@ clicks — as written it will suppress conversions on the higher-priced plan.
 
 At the practice's request the hero carries no plan or payment pricing. It
 leads with the headline, the four plan value points, Book Appointment and Call
-Now, the 4.9 (333) rating, and Dr. Cohen's portrait with a glass caption
-naming him and his title.
+Now, the 4.9 (333) rating, and the chairside photograph of Dr. Cohen with a
+patient, captioned with his name and title.
 
 Worth knowing: visitors searching cost-intent terms ("dental plan price",
 "how much is a dental plan") no longer see a number above the fold, which
@@ -83,15 +84,6 @@ usually costs some conversion rate on paid traffic. Pricing is still the
 fourth block on the page and reachable in one scroll. If you want it back
 above the fold without a pricing card, the lightest option is a single line
 under the CTAs — say "Plans from $299/yr" — rather than restoring the card.
-
-## Practice and dentist sections merged
-
-The source's "Trusted Care in Coral Springs" and "Meet Dr. Daniel Cohen"
-sections each had a photo slot. The practice supplied one authentic
-photograph, which now leads the hero, so the two sections are combined into a
-single two-column text block with the CTAs beneath. Both headings and all copy
-are the source's own; nothing was filled with stock imagery. If you send an
-office interior shot, the block can split back into two image sections.
 
 ## No lead form — by design
 
@@ -134,8 +126,11 @@ so GTM can attribute which plan was clicked.
 
 Minimal PPC header (no site nav) → hero with portrait → trust strip → what
 the plan is → **plans & pricing** → how it works → why choose → an investment
-in your health → mid CTA → practice & Dr. Cohen → reviews → important plan
-details → final CTA → location → footer → mobile sticky bar.
+in your health → mid CTA → about the practice → meet Dr. Cohen → reviews →
+important plan details → final CTA → location → footer → mobile sticky bar.
+
+Section backgrounds alternate white/grey down the page, with the two navy CTA
+bands breaking the rhythm, so no two adjacent sections share a background.
 
 The full two-plan comparison is the fourth block on the page. Exclusions get a
 bordered amber panel inside each plan card, not grey footnotes, plus a
@@ -156,12 +151,13 @@ source's own "Read more" behaviour.
   Appointment) is mobile-only, respects `env(safe-area-inset-bottom)`, and
   `body` carries matching bottom padding so it never covers content.
 - **Performance:** all CSS inline, one small script at end of body, system
-  font stack (zero font requests), no render-blocking resources. The portrait
-  is the LCP element: preloaded as WebP with `fetchpriority="high"`, served
-  through a `<picture>` with a JPEG fallback, and carrying explicit
-  `width`/`height` so CLS stays at zero. Everything else is `loading="lazy"
-  decoding="async"`.
-- **Glass:** header, portrait caption and sticky bar only, each with an opaque
+  font stack (zero font requests), no render-blocking resources. The hero
+  photograph is the LCP element: preloaded with `imagesrcset`/`imagesizes` so
+  phones fetch an 18 KB file and desktops a 39 KB one, `fetchpriority="high"`,
+  served through a `<picture>` with a JPEG fallback. Every image carries
+  explicit `width`/`height` so CLS stays at zero; everything below the fold is
+  `loading="lazy" decoding="async"`.
+- **Glass:** header, hero photo caption and sticky bar only, each with an opaque
   `rgba` fallback declared *before* the `@supports backdrop-filter` block.
 - **Accessibility:** semantic landmarks, one H1, no skipped heading levels,
   skip link, visible focus rings, `aria-expanded`/`aria-controls` on the
