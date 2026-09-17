@@ -1,26 +1,31 @@
 # Image assets
 
-These files are referenced by `index.html` but are **not yet present**: the
-source campaign landing page (and the practice site) are blocked by this
-environment's network egress policy, so the authentic assets could not be
-downloaded. See `../../CONTENT-SOURCE-NEEDED.md`.
+`index.html` references the files below. They are the authentic South Florida
+Dental Center assets from the source campaign landing page and are **not yet
+in the repo** — the source host was unreachable from the build environment, so
+they could not be downloaded.
 
-Required, taken from the source campaign LP — no stock substitutes, no
-generated dentists, patients, offices or before/after results:
+Until they are added, the page hides each missing image wrapper via a small
+`onerror` handler rather than rendering broken-image placeholders, so the
+layout stays clean.
 
-| File | Used for | Notes |
+| File | Used for | Target size |
 |---|---|---|
-| `logo.svg` | header + footer | SVG preferred; PNG at 2x acceptable |
-| `hero.webp` | hero visual (LCP) | authentic practice/team photo, 880x660 or larger, 4:3 |
-| `doctor.webp` | trust section | authentic doctor photo, square crop |
-| `og-image.jpg` | social share preview | 1200x630 |
-| `favicon.png` | browser tab | 48x48 |
+| `logo.svg` | header + footer | SVG, or PNG at 2x |
+| `hero.webp` | hero visual (LCP) | 880×660 or larger, 4:3 |
+| `office.webp` | about-the-practice section | square crop |
+| `doctor.webp` | Meet Dr. Daniel Cohen | square crop |
+| `og-image.jpg` | social share preview | 1200×630 |
+| `favicon.png` | browser tab | 48×48 |
 
-Optimisation expected before launch: WebP/AVIF, correct intrinsic dimensions
-matching the `width`/`height` attributes in the markup, and compression to
-roughly 100-200 KB for the hero. The hero image is preloaded with
-`fetchpriority="high"` and is deliberately **not** lazy-loaded; everything
-below the fold is `loading="lazy" decoding="async"`.
+No stock substitutes, no generated dentists, patients, offices or
+before/after results.
 
-Alt text must describe the real photo and, for the doctor image, use the name
-and role exactly as the source LP states them.
+Optimisation before launch: WebP/AVIF, intrinsic dimensions matching the
+`width`/`height` attributes in the markup, hero compressed to roughly
+100–200 KB. The hero is preloaded with `fetchpriority="high"` and deliberately
+**not** lazy-loaded; everything below the fold is lazy.
+
+Alt text is already written against the source page's own image descriptions
+("Welcoming modern dental office interior", "Dr. Daniel Cohen — General &
+Cosmetic Dentist"). Adjust only if the actual photo differs.

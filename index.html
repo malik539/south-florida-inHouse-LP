@@ -6,66 +6,52 @@
 
 <!--
   South Florida Dental Center — In-House Yearly Dental Plan
-  Google Ads landing page. Static HTML5 / CSS3 / vanilla JS. No build step.
+  Google Ads landing page. Static HTML5 / CSS3 / minimal vanilla JS. No build step.
 
-  ============================================================================
-  BUILD STATUS: CONTENT PENDING VERIFICATION — DO NOT PUBLISH AS-IS
-  ============================================================================
-  Every factual value on this page is an explicit [[VERIFY: ...]] token because
-  the source campaign landing page could not be reached from the build
-  environment (organization egress policy denied
-  smilehub.southfloridadentalcenter.com and southfloridadentalcenter.com).
-  Nothing has been invented. See CONTENT-SOURCE-NEEDED.md for the full list of
-  values required, then:
-    1. Replace every [[VERIFY: ...]] token with the source LP's exact wording.
-    2. Delete the .build-notice banner block and the .verify CSS rule.
-    3. Delete any section the source LP does not support (reviews, FAQ,
-       insurance comparison) rather than filling it from assumption.
-  ============================================================================
+  All copy, pricing, inclusions, exclusions, credentials and reviews are
+  reproduced from the source campaign landing page:
+  https://smilehub.southfloridadentalcenter.com/in-house-yearly-dental-plan-campaign
+  Nothing on this page is invented. See README.md for the three judgement
+  calls made (stale _ga parameter, relative review dates, and the duplicated
+  Periodontal Plan disclaimer) and for the assets still to be dropped in.
 -->
 
-<title>[[VERIFY: page title from source LP]] | South Florida Dental Center</title>
-<meta name="description" content="[[VERIFY: meta description — write only from wording present on the source campaign landing page]]">
-<meta name="robots" content="noindex">
-<!-- ^ noindex is intentional while content is unverified. Remove before launch;
-     PPC landing pages are commonly left index,follow or noindex per strategy. -->
-
+<title>Dental Plan in Coral Springs, FL | South Florida Dental Center</title>
+<meta name="description" content="Get affordable dental plans in Coral Springs with South Florida Dental Center. Silver Plan $349/yr adult, $299/yr child. Exams, cleanings, x-rays and 20% off all dental services.">
 <link rel="canonical" href="https://smilehub.southfloridadentalcenter.com/in-house-yearly-dental-plan-campaign">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="[[VERIFY: OG title]]">
-<meta property="og:description" content="[[VERIFY: OG description]]">
+<meta property="og:title" content="Save on Dental Care: Affordable Plans in Coral Springs, FL">
+<meta property="og:description" content="Get affordable dental plans in Coral Springs with South Florida Dental Center. Enjoy discounts, discounted services, and a healthy smile!">
 <meta property="og:image" content="assets/images/og-image.jpg">
+<meta name="theme-color" content="#1c5183">
 
 <link rel="icon" href="assets/images/favicon.png">
 <link rel="preload" as="image" href="assets/images/hero.webp" fetchpriority="high">
 
 <!-- Google Tag Manager / Google Ads / GA4 container goes here.
-     No container ID is included: none was available from the source. -->
+     No container ID was present on the source page, so none is hardcoded. -->
 
 <style>
 /* ==========================================================================
-   1. DESIGN TOKENS
-   Brand values below were sampled from the South Florida Dental Center logo
-   artwork supplied with the brief. They are marked UNCONFIRMED until checked
-   against the live campaign landing page's own CSS.
+   1. DESIGN TOKENS — sampled from the South Florida Dental Center logo
    ========================================================================== */
 :root{
-  --primary:#1c5183;          /* UNCONFIRMED — logo navy */
+  --primary:#1c5183;
   --primary-dark:#143c62;
   --primary-light:#2f6ea8;
   --primary-tint:#eaf1f8;
-  --secondary:#97999b;        /* UNCONFIRMED — logo grey */
-  --accent:#2f6ea8;           /* tint of brand navy; no new hue introduced */
+  --secondary:#97999b;
+  --accent:#2f6ea8;
   --background:#f4f7fa;
   --surface:#ffffff;
   --surface-alt:#eef3f8;
   --text:#14212e;
-  --muted-text:#57677a;
-  --line:#dde5ee;
-  --success:#1d7a5f;
+  --muted-text:#55657a;
+  --line:#dce4ee;
+  --star:#e8a020;
   --warn-surface:#fff8ec;
-  --warn-line:#e8d4ae;
+  --warn-line:#e6d3ad;
   --warn-text:#6b4c12;
 
   --radius-sm:10px;
@@ -80,46 +66,39 @@
   --maxw:1180px;
   --gutter:20px;
   --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  /* [[VERIFY: font family used on the source LP. System stack used for now:
-     zero network requests, zero render-blocking, best LCP. ]] */
 }
 
 /* ==========================================================================
-   2. RESET / BASE
+   2. BASE
    ========================================================================== */
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{
-  margin:0;
-  font-family:var(--font);
-  font-size:17px;
-  line-height:1.6;
-  color:var(--text);
-  background:var(--background);
-  -webkit-font-smoothing:antialiased;
+  margin:0;font-family:var(--font);font-size:17px;line-height:1.6;
+  color:var(--text);background:var(--background);-webkit-font-smoothing:antialiased;
 }
 img{max-width:100%;height:auto;display:block}
 h1,h2,h3,h4{line-height:1.18;margin:0 0 .5em;letter-spacing:-.02em;font-weight:800}
-h1{font-size:clamp(2rem,5.2vw,3.35rem)}
-h2{font-size:clamp(1.6rem,3.6vw,2.4rem)}
-h3{font-size:clamp(1.15rem,2vw,1.35rem)}
+h1{font-size:clamp(1.95rem,5vw,3.2rem)}
+h2{font-size:clamp(1.55rem,3.5vw,2.35rem)}
+h3{font-size:clamp(1.12rem,1.9vw,1.3rem)}
 p{margin:0 0 1em}
 a{color:var(--primary)}
-ul{margin:0;padding:0;list-style:none}
-strong{font-weight:700}
+ul,ol{margin:0;padding:0;list-style:none}
 
 .container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
-section{padding:clamp(48px,7vw,84px) 0}
-.section-head{max-width:720px;margin:0 auto clamp(28px,4vw,44px);text-align:center}
+section{padding:clamp(44px,6.5vw,80px) 0}
+.section-head{max-width:740px;margin:0 auto clamp(26px,4vw,42px);text-align:center}
 .section-head p{color:var(--muted-text);font-size:1.05rem;margin:0}
 .eyebrow{
-  display:inline-block;font-size:.78rem;font-weight:800;letter-spacing:.12em;
+  display:inline-block;font-size:.76rem;font-weight:800;letter-spacing:.13em;
   text-transform:uppercase;color:var(--primary);background:var(--primary-tint);
   padding:7px 14px;border-radius:var(--radius-pill);margin-bottom:14px;
 }
 .alt-bg{background:var(--surface)}
+/* Keep anchor-scrolled sections clear of the sticky header */
+section[id]{scroll-margin-top:92px}
 
-/* Accessibility helpers */
 .visually-hidden{
   position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
   clip:rect(0 0 0 0);white-space:nowrap;border:0;
@@ -129,27 +108,21 @@ section{padding:clamp(48px,7vw,84px) 0}
   color:#fff;padding:12px 18px;border-radius:0 0 var(--radius-sm) 0;font-weight:700;
 }
 .skip-link:focus{left:0}
-:where(a,button,summary,input,select,textarea,[tabindex]):focus-visible{
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{
   outline:3px solid var(--primary-light);outline-offset:3px;border-radius:4px;
 }
 
-/* Marker for unverified copy — DELETE THIS RULE AT LAUNCH */
-.verify{
-  background:#fff3cd;color:#6b4c12;border-bottom:2px dashed #c79b2a;
-  padding:0 2px;font-style:normal;
-}
-
 /* ==========================================================================
-   3. LIQUID GLASS — used selectively, with an opaque fallback first
+   3. LIQUID GLASS — opaque fallback declared first
    ========================================================================== */
 .glass{
-  background:rgba(255,255,255,.92);
-  border:1px solid rgba(255,255,255,.7);
-  box-shadow:var(--shadow);
+  background:rgba(255,255,255,.94);
+  border:1px solid rgba(255,255,255,.75);
+  box-shadow:var(--shadow-lg);
 }
 @supports ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){
   .glass{
-    background:rgba(255,255,255,.72);
+    background:rgba(255,255,255,.74);
     -webkit-backdrop-filter:blur(14px) saturate(140%);
     backdrop-filter:blur(14px) saturate(140%);
   }
@@ -161,7 +134,7 @@ section{padding:clamp(48px,7vw,84px) 0}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:9px;
   font:inherit;font-weight:800;font-size:1rem;text-decoration:none;cursor:pointer;
-  padding:15px 26px;border-radius:var(--radius-pill);border:2px solid transparent;
+  padding:15px 24px;border-radius:var(--radius-pill);border:2px solid transparent;
   transition:transform .15s ease,box-shadow .15s ease,background-color .15s ease;
   text-align:center;line-height:1.2;min-height:52px;
 }
@@ -173,25 +146,28 @@ section{padding:clamp(48px,7vw,84px) 0}
 .btn-primary:active{transform:translateY(0)}
 .btn-secondary{background:var(--surface);color:var(--primary);border-color:var(--primary)}
 .btn-secondary:hover{background:var(--primary-tint);transform:translateY(-2px)}
-.btn-ghost-light{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.65)}
+.btn-ghost-light{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.7)}
 .btn-ghost-light:hover{background:rgba(255,255,255,.24)}
+.btn-link{
+  background:none;border:0;padding:10px 2px;min-height:44px;color:var(--primary);
+  font-weight:800;text-decoration:underline;justify-content:flex-start;
+}
 .btn-block{width:100%}
 .btn-sm{padding:11px 18px;font-size:.93rem;min-height:44px}
 .btn svg{width:18px;height:18px;flex:none;fill:currentColor}
 
 /* ==========================================================================
-   5. HEADER (minimal PPC header — no site navigation)
+   5. HEADER — minimal PPC header, no site navigation
    ========================================================================== */
-.site-header{
-  position:sticky;top:0;z-index:100;border-bottom:1px solid var(--line);
-  background:rgba(255,255,255,.92);
-}
+.site-header{position:sticky;top:0;z-index:100;border-bottom:1px solid var(--line);background:rgba(255,255,255,.94)}
 @supports ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){
-  .site-header{background:rgba(255,255,255,.8);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+  .site-header{background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 }
-.header-inner{display:flex;align-items:center;gap:16px;min-height:72px;padding:10px var(--gutter)}
+.header-inner{display:flex;align-items:center;gap:14px;min-height:72px;padding:10px var(--gutter)}
 .header-logo{margin-right:auto;display:flex;align-items:center}
-.header-logo img{height:44px;width:auto}
+.header-logo img{height:46px;width:auto}
+.logo-text{font-weight:800;font-size:1.12rem;line-height:1.15;color:var(--primary);letter-spacing:-.02em}
+.site-footer .logo-text{color:#fff}
 .header-ctas{display:flex;align-items:center;gap:10px}
 .header-phone{
   display:inline-flex;align-items:center;gap:8px;font-weight:800;color:var(--primary);
@@ -199,289 +175,247 @@ section{padding:clamp(48px,7vw,84px) 0}
 }
 .header-phone:hover{background:var(--primary-tint)}
 .header-phone svg{width:17px;height:17px;fill:currentColor;flex:none}
-@media (max-width:640px){
-  .header-logo img{height:34px}
-  .header-phone .phone-label{display:none}
-  .site-header .btn{display:none} /* sticky bottom bar carries the CTA on mobile */
+@media (max-width:700px){
+  .header-logo img{height:36px}
+  .header-phone .phone-word{display:none}
+  .site-header .btn{display:none}
 }
 
 /* ==========================================================================
    6. HERO
    ========================================================================== */
 .hero{
-  position:relative;overflow:hidden;padding:clamp(36px,5vw,64px) 0 clamp(48px,6vw,76px);
+  position:relative;overflow:hidden;padding:clamp(34px,4.5vw,60px) 0 clamp(44px,6vw,72px);
   background:
-    radial-gradient(900px 420px at 82% -8%,rgba(47,110,168,.16),transparent 60%),
-    radial-gradient(700px 380px at 6% 100%,rgba(151,153,155,.16),transparent 62%),
-    linear-gradient(180deg,#fdfefe,var(--background));
+    radial-gradient(900px 420px at 84% -10%,rgba(47,110,168,.17),transparent 60%),
+    radial-gradient(700px 380px at 4% 100%,rgba(151,153,155,.18),transparent 62%),
+    linear-gradient(180deg,#fdfeff,var(--background));
 }
-.hero-grid{display:grid;gap:clamp(28px,4vw,52px);align-items:center}
-@media (min-width:960px){.hero-grid{grid-template-columns:1.05fr .95fr}}
-.hero h1{margin-bottom:16px}
-.hero-sub{font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--muted-text);max-width:34em;margin-bottom:22px}
-.hero-points{display:grid;gap:11px;margin:0 0 26px}
+.hero-grid{display:grid;gap:clamp(26px,4vw,48px);align-items:center}
+@media (min-width:980px){.hero-grid{grid-template-columns:1.05fr .95fr;align-items:start}}
+.hero-aside{display:flex;flex-direction:column;gap:18px}
+.hero h1{margin-bottom:14px}
+.hero-sub{font-size:clamp(1.03rem,1.5vw,1.17rem);color:var(--muted-text);max-width:34em;margin-bottom:20px}
+.hero-points{display:grid;gap:10px;margin:0 0 24px}
 .hero-points li{display:flex;gap:11px;align-items:flex-start;font-weight:600}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
-.hero-actions .btn{flex:1 1 220px}
-.hero-reassure{margin:16px 0 0;font-size:.92rem;color:var(--muted-text)}
-
-.check{
-  flex:none;width:22px;height:22px;border-radius:50%;background:var(--primary-tint);
-  display:grid;place-items:center;margin-top:1px;
+.hero-actions .btn{flex:1 1 215px}
+.hero-rating{
+  display:flex;align-items:center;gap:10px;margin:18px 0 0;font-size:.94rem;
+  color:var(--muted-text);flex-wrap:wrap;
 }
+.stars{display:inline-flex;gap:2px}
+.stars svg{width:16px;height:16px;fill:var(--star)}
+
+.check{flex:none;width:22px;height:22px;border-radius:50%;background:var(--primary-tint);display:grid;place-items:center;margin-top:1px}
 .check svg{width:13px;height:13px;fill:var(--primary)}
 
-/* Hero offer card */
-.offer-card{border-radius:var(--radius-lg);padding:clamp(22px,3vw,30px);position:relative}
-.offer-card h2{font-size:1.18rem;margin-bottom:4px}
-.offer-card .offer-note{font-size:.9rem;color:var(--muted-text);margin-bottom:18px}
-.price-row{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;margin-bottom:6px}
-.price{font-size:clamp(2.4rem,6vw,3.1rem);font-weight:800;letter-spacing:-.03em;color:var(--primary);line-height:1}
-.price-freq{font-weight:700;color:var(--muted-text);padding-bottom:6px}
+.offer-card{border-radius:var(--radius-lg);padding:clamp(22px,3vw,30px)}
+.offer-flag{
+  display:inline-block;background:var(--primary);color:#fff;font-size:.75rem;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:var(--radius-pill);margin-bottom:12px;
+}
+.offer-card h2{font-size:1.32rem;margin-bottom:12px}
+.price-split{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.price-block{flex:1 1 130px}
+.price-block .price-who{font-size:.8rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted-text)}
+.price{font-size:clamp(2.1rem,5.4vw,2.7rem);font-weight:800;letter-spacing:-.03em;color:var(--primary);line-height:1.05;display:block}
+.price-freq{font-weight:700;color:var(--muted-text);font-size:.95rem}
+.offer-extra{font-size:.93rem;color:var(--muted-text);margin:8px 0 0}
 .offer-list{display:grid;gap:10px;margin:18px 0 22px;padding-top:18px;border-top:1px solid var(--line)}
-.offer-list li{display:flex;gap:10px;align-items:flex-start;font-size:.97rem}
+.offer-list li{display:flex;gap:10px;align-items:flex-start;font-size:.96rem}
 
-.hero-media{position:relative}
 .hero-media img{
   width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);
-  aspect-ratio:4/3;object-fit:cover;background:var(--surface-alt);
+  aspect-ratio:16/10;object-fit:cover;background:var(--surface-alt);
 }
-@media (max-width:959px){
-  /* Mobile CRO order: headline -> offer -> pricing -> CTAs -> visual */
-  .hero-grid{display:flex;flex-direction:column}
-  .hero-copy{order:1}
-  .hero-card-wrap{order:2}
-  .hero-media{order:3}
-}
+.hero-media.is-missing{display:none}
+/* One source order at every breakpoint — headline & CTAs, then pricing,
+   then the photo. On desktop the pricing card heads the right-hand column so
+   it lands above the fold; on mobile the same order stacks correctly. */
 
 /* ==========================================================================
-   7. CARD GRIDS
+   7. TRUST STRIP
+   ========================================================================== */
+.strip{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0}
+.strip-list{display:grid;gap:14px;grid-template-columns:repeat(2,1fr);text-align:center}
+@media (min-width:860px){.strip-list{grid-template-columns:repeat(4,1fr)}}
+.strip-list li{display:flex;align-items:center;justify-content:center;gap:9px;font-weight:700;font-size:.97rem}
+.strip-list svg{width:20px;height:20px;fill:var(--primary);flex:none}
+
+/* ==========================================================================
+   8. CARD GRIDS
    ========================================================================== */
 .grid{display:grid;gap:18px}
-.grid-2{grid-template-columns:1fr}
-.grid-3{grid-template-columns:1fr}
-.grid-4{grid-template-columns:1fr}
-@media (min-width:640px){
-  .grid-3,.grid-4{grid-template-columns:repeat(2,1fr)}
-  .grid-2{grid-template-columns:repeat(2,1fr)}
-}
-@media (min-width:1000px){
-  .grid-3{grid-template-columns:repeat(3,1fr)}
-  .grid-4{grid-template-columns:repeat(4,1fr)}
-}
+.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+@media (min-width:640px){.grid-2,.grid-3,.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1000px){.grid-3{grid-template-columns:repeat(3,1fr)}.grid-4{grid-template-columns:repeat(4,1fr)}}
 
-.card{
-  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-  padding:24px;box-shadow:var(--shadow-sm);
-}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm)}
 .card h3{margin-bottom:8px}
 .card p{margin:0;color:var(--muted-text);font-size:.97rem}
-.card-icon{
-  width:44px;height:44px;border-radius:12px;background:var(--primary-tint);
-  display:grid;place-items:center;margin-bottom:14px;
-}
+.card-icon{width:44px;height:44px;border-radius:12px;background:var(--primary-tint);display:grid;place-items:center;margin-bottom:14px}
 .card-icon svg{width:22px;height:22px;fill:var(--primary)}
 
+/* Commitment list */
+.commit{
+  display:grid;gap:12px;max-width:820px;margin:0 auto;
+  grid-template-columns:1fr;
+}
+@media (min-width:700px){.commit{grid-template-columns:repeat(2,1fr)}}
+.commit li{
+  display:flex;gap:12px;align-items:center;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;
+  font-weight:700;box-shadow:var(--shadow-sm);
+}
+
 /* ==========================================================================
-   8. PLAN / PRICING CARDS
+   9. PLAN CARDS
    ========================================================================== */
 .plans{display:grid;gap:22px;align-items:start}
-@media (min-width:900px){.plans{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}}
+@media (min-width:900px){.plans{grid-template-columns:repeat(2,1fr)}}
 .plan{
   background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);
   padding:clamp(22px,2.6vw,30px);box-shadow:var(--shadow);display:flex;flex-direction:column;
 }
 .plan-featured{border:2px solid var(--primary);box-shadow:var(--shadow-lg);position:relative}
 .plan-flag{
-  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
-  background:var(--primary);color:#fff;font-size:.72rem;font-weight:800;letter-spacing:.09em;
-  text-transform:uppercase;padding:6px 14px;border-radius:var(--radius-pill);white-space:nowrap;
+  position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--primary);
+  color:#fff;font-size:.75rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  padding:6px 14px;border-radius:var(--radius-pill);white-space:nowrap;
 }
-.plan-name{font-size:1.3rem;margin-bottom:4px}
-.plan-for{color:var(--muted-text);font-size:.93rem;margin-bottom:16px}
-.plan-price{display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:4px}
-.plan-price .price{font-size:clamp(2.1rem,4.6vw,2.6rem)}
-.plan-pricing-extra{
-  margin:12px 0 0;display:grid;gap:6px;font-size:.93rem;
-  background:var(--surface-alt);border-radius:var(--radius-sm);padding:12px 14px;
+.plan-name{font-size:1.45rem;margin-bottom:14px}
+.plan-prices{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.plan-prices .price{font-size:clamp(2rem,4.4vw,2.45rem)}
+.plan-note{
+  margin:8px 0 0;font-size:.94rem;color:var(--muted-text);background:var(--surface-alt);
+  border-radius:var(--radius-sm);padding:11px 14px;
 }
-.plan-pricing-extra li{display:flex;justify-content:space-between;gap:12px}
-.plan-pricing-extra b{color:var(--primary)}
-.plan-includes{display:grid;gap:10px;margin:20px 0;padding-top:20px;border-top:1px solid var(--line)}
+.plan-note b{color:var(--primary)}
+.plan-includes{display:grid;gap:11px;margin:20px 0;padding-top:20px;border-top:1px solid var(--line)}
 .plan-includes li{display:flex;gap:10px;align-items:flex-start;font-size:.97rem}
+.plan-includes .code{color:var(--muted-text);font-size:.86rem;white-space:nowrap}
 .plan-limits{
   background:var(--warn-surface);border:1px solid var(--warn-line);color:var(--warn-text);
-  border-radius:var(--radius-sm);padding:14px 16px;margin:0 0 20px;font-size:.92rem;
+  border-radius:var(--radius-sm);padding:14px 16px;margin:0 0 20px;font-size:.93rem;
 }
 .plan-limits h4{font-size:.8rem;letter-spacing:.09em;text-transform:uppercase;margin:0 0 8px}
-.plan-limits ul{display:grid;gap:6px}
-.plan-limits li{padding-left:15px;position:relative}
-.plan-limits li::before{content:"•";position:absolute;left:2px}
-.plan .btn{margin-top:auto}
+.plan-limits p{margin:0}
+.plan-actions{margin-top:auto;display:grid;gap:10px}
+
+.plan-help{
+  margin:26px auto 0;max-width:700px;text-align:center;font-size:1.02rem;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;box-shadow:var(--shadow-sm);
+}
+.plan-help p{margin:0}
+.plan-help a{font-weight:800;white-space:nowrap}
 
 /* ==========================================================================
-   9. STEPS
+   10. STEPS
    ========================================================================== */
-.steps{counter-reset:step;display:grid;gap:18px}
-@media (min-width:820px){.steps{grid-template-columns:repeat(3,1fr)}}
+.steps{display:grid;gap:18px}
+@media (min-width:860px){.steps{grid-template-columns:repeat(3,1fr)}}
 .step{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px}
-.step-num{
-  font-size:.8rem;font-weight:800;letter-spacing:.14em;color:var(--primary);
-  display:block;margin-bottom:10px;
-}
-.step h3{font-size:1.12rem;margin-bottom:6px}
+.step-num{font-size:.8rem;font-weight:800;letter-spacing:.14em;color:var(--primary);display:block;margin-bottom:10px}
+.step h3{font-size:1.1rem;margin-bottom:6px}
 .step p{margin:0;color:var(--muted-text);font-size:.97rem}
 
 /* ==========================================================================
-   10. MID / FINAL CTA BANDS
+   11. CTA BANDS
    ========================================================================== */
-.cta-band{
-  background:linear-gradient(135deg,var(--primary-dark),var(--primary) 55%,var(--primary-light));
-  color:#fff;
-}
+.cta-band{background:linear-gradient(135deg,var(--primary-dark),var(--primary) 55%,var(--primary-light));color:#fff}
 .cta-band h2{color:#fff}
 .cta-inner{max-width:760px;margin:0 auto;text-align:center}
-.cta-inner p{color:rgba(255,255,255,.9);font-size:1.06rem}
+.cta-inner p{color:rgba(255,255,255,.92);font-size:1.06rem}
 .cta-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:24px}
-.cta-actions .btn{flex:1 1 230px;max-width:320px}
+.cta-actions .btn{flex:1 1 230px;max-width:330px}
 .cta-band .btn-primary{background:#fff;color:var(--primary-dark);box-shadow:0 8px 22px rgba(0,0,0,.18)}
 .cta-band .btn-primary:hover{background:#f1f6fb}
 
 /* ==========================================================================
-   11. TRUST / DOCTOR
+   12. TRUST / DOCTOR
    ========================================================================== */
 .trust-grid{display:grid;gap:clamp(24px,4vw,44px);align-items:center}
-@media (min-width:900px){.trust-grid{grid-template-columns:.85fr 1.15fr}}
-.trust-media img{
-  border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);width:100%;
-  aspect-ratio:1/1;object-fit:cover;background:var(--surface-alt);
-}
+@media (min-width:900px){.trust-grid{grid-template-columns:.9fr 1.1fr}}
+.trust-media img{border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--surface-alt)}
+.trust-media.is-missing{display:none}
+.creds{display:grid;gap:10px;margin:20px 0 0}
+.creds li{display:flex;gap:11px;align-items:flex-start;font-weight:600}
 
 /* Reviews */
-.reviews{display:grid;gap:18px}
-@media (min-width:768px){.reviews{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}}
-.review{
-  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-  padding:24px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;
+.review-summary{
+  display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;
+  margin:0 0 26px;font-weight:700;
 }
-.review blockquote{margin:0 0 16px;font-size:1rem;color:var(--text)}
-.review-stars{display:flex;gap:3px;margin-bottom:12px}
-.review-stars svg{width:17px;height:17px;fill:#e8a020}
+.review-score{font-size:2.1rem;font-weight:800;color:var(--primary);line-height:1}
+.review-count{color:var(--muted-text);font-weight:600}
+.reviews{display:grid;gap:18px}
+@media (min-width:700px){.reviews{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1050px){.reviews{grid-template-columns:repeat(3,1fr)}}
+.review{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;margin:0}
+.review-body{margin:0 0 14px;font-size:.99rem}
+.review-body.clamped{
+  display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden;
+}
+.review-more{align-self:flex-start;margin-bottom:10px}
 .review-meta{margin-top:auto;font-size:.9rem;color:var(--muted-text)}
 .review-meta cite{font-style:normal;font-weight:700;color:var(--text);display:block}
 
 /* ==========================================================================
-   12. PLAN DETAILS / TERMS
+   13. PLAN DETAILS
    ========================================================================== */
 .details-grid{display:grid;gap:18px}
 @media (min-width:860px){.details-grid{grid-template-columns:repeat(2,1fr)}}
-.detail-card{
-  background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--primary);
-  border-radius:var(--radius);padding:22px 24px;
-}
+.detail-card{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:var(--radius);padding:22px 24px}
 .detail-card h3{font-size:1.05rem;margin-bottom:10px}
-.detail-card ul{display:grid;gap:8px;font-size:.97rem;color:var(--muted-text)}
+.detail-card ul{display:grid;gap:9px;font-size:.97rem;color:var(--muted-text)}
 .detail-card li{display:flex;gap:10px;align-items:flex-start}
 .detail-card li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--secondary);margin-top:9px}
-.terms-note{
-  margin-top:24px;font-size:.95rem;color:var(--muted-text);background:var(--surface);
-  border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;
-}
 
 /* ==========================================================================
-   13. FAQ ACCORDION
+   14. LOCATION
    ========================================================================== */
-.faq{max-width:860px;margin:0 auto;display:grid;gap:12px}
-.faq-item{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
-.faq-q{
-  width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;
-  background:none;border:0;font:inherit;font-weight:700;font-size:1.02rem;color:var(--text);
-  text-align:left;padding:19px 22px;cursor:pointer;
-}
-.faq-q:hover{background:var(--primary-tint)}
-.faq-q .faq-icon{flex:none;width:22px;height:22px;position:relative;transition:transform .25s ease}
-.faq-q .faq-icon::before,.faq-q .faq-icon::after{
-  content:"";position:absolute;background:var(--primary);border-radius:2px;
-  top:50%;left:50%;transform:translate(-50%,-50%);
-}
-.faq-q .faq-icon::before{width:14px;height:2px}
-.faq-q .faq-icon::after{width:2px;height:14px;transition:opacity .2s ease}
-.faq-q[aria-expanded="true"] .faq-icon::after{opacity:0}
-.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s ease}
-.faq-item.open .faq-a{grid-template-rows:1fr}
-.faq-a > div{overflow:hidden}
-.faq-a p{margin:0;padding:0 22px 20px;color:var(--muted-text)}
-@supports not (grid-template-rows:1fr){
-  .faq-a{display:block;height:0;overflow:hidden}
-  .faq-item.open .faq-a{height:auto}
-}
-
-/* ==========================================================================
-   14. FORM + LOCATION
-   ========================================================================== */
-.contact-grid{display:grid;gap:clamp(24px,4vw,40px);align-items:start}
-@media (min-width:960px){.contact-grid{grid-template-columns:1.05fr .95fr}}
-.form-card{
-  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);
-  padding:clamp(22px,3vw,32px);box-shadow:var(--shadow);
-}
-.field{margin-bottom:18px}
-.field label{display:block;font-weight:700;font-size:.94rem;margin-bottom:7px}
-.field .req{color:#b42318}
-.field input,.field select,.field textarea{
-  width:100%;font:inherit;font-size:1rem;padding:13px 15px;color:var(--text);
-  background:var(--surface);border:1.5px solid var(--line);border-radius:var(--radius-sm);
-}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--primary);outline-offset:1px}
-.field .hint{display:block;font-size:.85rem;color:var(--muted-text);margin-top:6px}
-.field-error{color:#b42318;font-size:.87rem;font-weight:600;margin-top:6px;display:none}
-.field.invalid input,.field.invalid select{border-color:#b42318}
-.field.invalid .field-error{display:block}
-.form-consent{font-size:.85rem;color:var(--muted-text);margin:14px 0 0}
-.form-status{margin:14px 0 0;font-weight:700;display:none}
-.form-status.show{display:block}
-
-.info-card{
-  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);
-  padding:clamp(22px,3vw,30px);box-shadow:var(--shadow-sm);
-}
-.info-block{padding:16px 0;border-bottom:1px solid var(--line)}
-.info-block:last-of-type{border-bottom:0}
-.info-block h3{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-text);margin-bottom:8px}
-.info-block p,.info-block a{margin:0;font-size:1.05rem;font-weight:700;color:var(--text);text-decoration:none}
-.info-block a:hover{color:var(--primary)}
-.hours{display:grid;gap:6px;font-size:.97rem}
-.hours li{display:flex;justify-content:space-between;gap:16px}
-.hours span:last-child{color:var(--muted-text)}
+.contact-grid{display:grid;gap:clamp(22px,3.5vw,32px)}
+@media (min-width:860px){.contact-grid{grid-template-columns:repeat(2,1fr)}}
+.info-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:clamp(22px,3vw,30px);box-shadow:var(--shadow-sm)}
+.info-card h3{font-size:.79rem;letter-spacing:.11em;text-transform:uppercase;color:var(--muted-text);margin-bottom:10px}
+.info-card address{font-style:normal;font-size:1.1rem;font-weight:700;margin:0 0 4px}
+.info-card .big-link{font-size:1.35rem;font-weight:800;text-decoration:none;display:inline-block}
+.info-card .big-link:hover{text-decoration:underline}
+.hours{display:grid;gap:7px;font-size:1rem}
+.hours li{display:flex;justify-content:space-between;gap:16px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+.hours li:last-child{border-bottom:0;padding-bottom:0}
+.hours .closed{color:var(--muted-text)}
+.hours time{font-weight:700}
 
 /* ==========================================================================
    15. FOOTER
    ========================================================================== */
-.site-footer{background:#0f1c28;color:rgba(255,255,255,.72);padding:44px 0}
+.site-footer{background:#0f1c28;color:rgba(255,255,255,.74);padding:40px 0}
 .site-footer a{color:#fff}
-.footer-inner{display:grid;gap:22px}
+.footer-inner{display:grid;gap:20px}
 @media (min-width:768px){.footer-inner{grid-template-columns:1fr auto;align-items:center}}
-.site-footer img{height:44px;width:auto;background:#fff;padding:8px 12px;border-radius:var(--radius-sm)}
-.footer-legal{font-size:.86rem;line-height:1.6;margin:0}
+.site-footer img{height:46px;width:auto;background:#fff;padding:8px 12px;border-radius:var(--radius-sm)}
+.footer-legal{font-size:.87rem;line-height:1.65;margin:0}
 
 /* ==========================================================================
    16. MOBILE STICKY CONVERSION BAR
    ========================================================================== */
 .sticky-cta{display:none}
 @media (max-width:767px){
-  :root{--sticky-space:78px}
   .sticky-cta{
     display:grid;grid-template-columns:1fr 1fr;gap:10px;
     position:fixed;left:0;right:0;bottom:0;z-index:120;
     padding:10px 12px calc(10px + env(safe-area-inset-bottom));
-    background:rgba(255,255,255,.94);border-top:1px solid var(--line);
+    background:rgba(255,255,255,.95);border-top:1px solid var(--line);
     box-shadow:0 -6px 24px rgba(20,33,46,.14);
   }
   @supports ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){
-    .sticky-cta{background:rgba(255,255,255,.84);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+    .sticky-cta{background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
   }
-  .sticky-cta .btn{width:100%;padding:13px 10px;font-size:.97rem;min-height:50px}
-  body{padding-bottom:var(--sticky-space)}
+  .sticky-cta .btn{width:100%;padding:13px 8px;font-size:.96rem;min-height:50px}
+  body{padding-bottom:78px}
 }
 
 /* ==========================================================================
@@ -489,567 +423,519 @@ section{padding:clamp(48px,7vw,84px) 0}
    ========================================================================== */
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
 .reveal.in{opacity:1;transform:none}
+.no-js .reveal{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
   .reveal{opacity:1;transform:none}
 }
-/* No-JS safety: never leave content hidden */
-.no-js .reveal{opacity:1;transform:none}
-
-/* Build notice — DELETE AT LAUNCH */
-.build-notice{
-  background:#6b4c12;color:#fff;font-size:.88rem;padding:10px var(--gutter);text-align:center;
-}
-.build-notice b{color:#ffe08a}
 </style>
 </head>
 <body class="no-js">
 
-<!-- ===== BUILD NOTICE — DELETE THIS BLOCK AT LAUNCH ===================== -->
-<div class="build-notice" role="note">
-  <b>Build notice:</b> highlighted text marks values that must be copied from the
-  source campaign landing page before this page goes live. Nothing here is invented.
-</div>
-<!-- ===================================================================== -->
-
 <a class="skip-link" href="#main">Skip to main content</a>
 
-<!-- ======================= 1. MINIMAL PPC HEADER ======================= -->
+<!-- ======================= MINIMAL PPC HEADER ========================== -->
 <header class="site-header">
   <div class="header-inner container">
-    <div class="header-logo">
-      <img src="assets/images/logo.svg" alt="South Florida Dental Center" width="220" height="68" fetchpriority="high" decoding="async">
+    <div class="header-logo" data-fallback-text>
+      <img src="assets/images/logo.svg" alt="South Florida Dental Center" width="230" height="72" fetchpriority="high" decoding="async">
     </div>
     <div class="header-ctas">
-      <a id="header-phone-cta" class="header-phone" data-conversion-type="phone"
-         href="tel:[[VERIFY-PHONE-E164]]">
+      <a id="header-phone-cta" class="header-phone" data-conversion-type="phone" href="tel:+19547100383">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.2 2.3 3.1 4.2 5.4 5.4l1.8-1.8c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V19c0 .6-.4 1-1 1-8.3 0-15-6.7-15-15 0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .7-.2 1l-1.8 1.8z"/></svg>
-        <span class="phone-label">Call</span> <span class="verify">[[VERIFY: phone]]</span>
+        <span class="phone-word">Call Now</span> 954-710-0383
       </a>
-      <a id="header-plan-cta" class="btn btn-primary btn-sm" data-conversion-type="plan"
-         href="#enroll">
-        <span class="verify">[[VERIFY: primary CTA wording]]</span>
-      </a>
+      <a id="header-book-cta" class="btn btn-primary btn-sm" data-conversion-type="book"
+         href="https://app.nexhealth.com/appt/southfloridadentalcenter">Book Appointment</a>
     </div>
   </div>
 </header>
 
 <main id="main">
 
-<!-- ============================ 2. HERO ================================ -->
+<!-- ============================== HERO ================================= -->
 <section class="hero" aria-labelledby="hero-title">
   <div class="container hero-grid">
 
     <div class="hero-copy">
-      <span class="eyebrow">In-House Yearly Dental Plan</span>
-      <h1 id="hero-title">
-        <span class="verify">[[VERIFY: H1 — use the strongest headline wording present on the source campaign LP]]</span>
-      </h1>
-      <p class="hero-sub">
-        <span class="verify">[[VERIFY: hero supporting copy, from the source LP only]]</span>
-      </p>
+      <span class="eyebrow">Dental Plan in Coral Springs, FL</span>
+      <h1 id="hero-title">Save on Dental Care: Affordable Plans in Coral Springs, FL</h1>
+      <p class="hero-sub">Get affordable dental plans in Coral Springs with South Florida Dental Center. Enjoy discounts, discounted services, and a healthy smile!</p>
 
       <ul class="hero-points">
         <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>
-          <span class="verify">[[VERIFY: key inclusion 1 — e.g. exams, exact wording and quantity]]</span></li>
+          You pay one low annual fee &mdash; no monthly bills or hidden costs</li>
         <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>
-          <span class="verify">[[VERIFY: key inclusion 2 — e.g. cleanings, exact wording and quantity]]</span></li>
+          Treatment for 12 consecutive months from the day you join</li>
         <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>
-          <span class="verify">[[VERIFY: key inclusion 3 — e.g. x-rays, exact wording]]</span></li>
+          FREE X-rays, exams and basic cleanings</li>
         <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>
-          <span class="verify">[[VERIFY: discount statement, exactly as the LP words it]]</span></li>
+          20% off all dental services, including cosmetic and implants</li>
       </ul>
 
       <div class="hero-actions">
-        <a id="hero-plan-cta" class="btn btn-primary" data-conversion-type="plan" href="#enroll">
-          <span class="verify">[[VERIFY: primary CTA wording]]</span>
-        </a>
-        <a id="hero-phone-cta" class="btn btn-secondary" data-conversion-type="phone" href="tel:[[VERIFY-PHONE-E164]]">
+        <a id="hero-book-cta" class="btn btn-primary" data-conversion-type="book"
+           href="https://app.nexhealth.com/appt/southfloridadentalcenter">Book Appointment</a>
+        <a id="hero-phone-cta" class="btn btn-secondary" data-conversion-type="phone" href="tel:+19547100383">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.2 2.3 3.1 4.2 5.4 5.4l1.8-1.8c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V19c0 .6-.4 1-1 1-8.3 0-15-6.7-15-15 0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .7-.2 1l-1.8 1.8z"/></svg>
-          Call <span class="verify">[[VERIFY: phone]]</span>
+          Call Now 954-710-0383
         </a>
       </div>
-      <p class="hero-reassure"><span class="verify">[[VERIFY: reassurance line — only if the LP states one, e.g. how the plan differs from insurance. Delete otherwise.]]</span></p>
+
+      <p class="hero-rating">
+        <span class="stars" role="img" aria-label="Rated 4.9 out of 5">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.7-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.5 4.8 1.7 7z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.7-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.5 4.8 1.7 7z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.7-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.5 4.8 1.7 7z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.7-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.5 4.8 1.7 7z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.7-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.5 4.8 1.7 7z"/></svg>
+        </span>
+        <strong>4.9</strong> from 333 reviews &middot; Trusted in Coral Springs
+      </p>
     </div>
 
-    <div class="hero-card-wrap">
+    <div class="hero-aside">
+
       <div class="offer-card glass">
-        <h2><span class="verify">[[VERIFY: plan name]]</span></h2>
-        <p class="offer-note"><span class="verify">[[VERIFY: who the plan is for / membership duration wording]]</span></p>
-        <div class="price-row">
-          <span class="price"><span class="verify">[[VERIFY: $price]]</span></span>
-          <span class="price-freq"><span class="verify">[[VERIFY: price frequency wording]]</span></span>
+        <span class="offer-flag">Most Popular</span>
+        <h2>Silver Plan</h2>
+        <div class="price-split">
+          <div class="price-block">
+            <span class="price-who">Adult</span>
+            <span class="price">$349</span>
+            <span class="price-freq">/ yr</span>
+          </div>
+          <div class="price-block">
+            <span class="price-who">Child</span>
+            <span class="price">$299</span>
+            <span class="price-freq">/ yr</span>
+          </div>
         </div>
+        <p class="offer-extra">Additional member: <strong>$329 / yr</strong></p>
         <ul class="offer-list">
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span class="verify">[[VERIFY: inclusion]]</span></li>
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span class="verify">[[VERIFY: inclusion]]</span></li>
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span class="verify">[[VERIFY: inclusion]]</span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>2 periodic exams + 2 limited/emergency exams per year</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>2 basic teeth cleanings</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Any required x-rays</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>20% off all dental services</li>
         </ul>
-        <a id="hero-card-plan-cta" class="btn btn-primary btn-block" data-conversion-type="plan" href="#enroll">
-          <span class="verify">[[VERIFY: primary CTA wording]]</span>
-        </a>
+        <a id="hero-card-compare-cta" class="btn btn-primary btn-block" data-conversion-type="navigate"
+           href="#plans">See both plans</a>
       </div>
-    </div>
 
-    <div class="hero-media">
-      <!-- LCP image: not lazy-loaded, explicit dimensions, eager decode. -->
-      <img src="assets/images/hero.webp" alt="[[VERIFY: describe the authentic South Florida Dental Center photo used here]]"
-           width="880" height="660" fetchpriority="high" decoding="async">
+      <div class="hero-media" data-fallback-hide>
+        <!-- LCP image: preloaded, not lazy-loaded, explicit dimensions. -->
+        <img src="assets/images/hero.webp"
+             alt="Welcoming modern dental office interior at South Florida Dental Center in Coral Springs"
+             width="880" height="550" fetchpriority="high" decoding="async">
+      </div>
+
     </div>
 
   </div>
 </section>
 
-<!-- ===================== 3. QUICK PLAN BENEFITS ======================== -->
-<section class="alt-bg" aria-labelledby="benefits-title">
+<!-- =========================== TRUST STRIP ============================= -->
+<div class="strip">
+  <ul class="strip-list container">
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Emergency Extractions</li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Financing Plans</li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Experienced Professionals</li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Trusted in Coral Springs</li>
+  </ul>
+</div>
+
+<!-- ===================== WHAT THE PLAN IS ============================== -->
+<section class="alt-bg" aria-labelledby="what-title">
   <div class="container">
     <div class="section-head">
-      <h2 id="benefits-title"><span class="verify">[[VERIFY: section heading from source LP]]</span></h2>
-      <p><span class="verify">[[VERIFY: short supporting line, source wording only]]</span></p>
+      <h2 id="what-title">In House Dental Plan</h2>
+      <p>At South Florida Dental Center, we understand that not everyone has dental insurance. That&rsquo;s why we&rsquo;ve designed our in-house dental plans Florida residents can rely on, offering an effective alternative that can accommodate individuals and families alike.</p>
     </div>
-    <ul class="grid grid-4 reveal">
-      <!-- Repeat one <li class="card"> per benefit ACTUALLY listed on the source LP.
-           Delete unused cards; do not pad with generic dental-plan benefits. -->
-      <li class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></div>
-        <h3><span class="verify">[[VERIFY: benefit 1 title]]</span></h3>
-        <p><span class="verify">[[VERIFY: benefit 1 detail]]</span></p>
-      </li>
-      <li class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></div>
-        <h3><span class="verify">[[VERIFY: benefit 2 title]]</span></h3>
-        <p><span class="verify">[[VERIFY: benefit 2 detail]]</span></p>
-      </li>
-      <li class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></div>
-        <h3><span class="verify">[[VERIFY: benefit 3 title]]</span></h3>
-        <p><span class="verify">[[VERIFY: benefit 3 detail]]</span></p>
-      </li>
-      <li class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></div>
-        <h3><span class="verify">[[VERIFY: benefit 4 title]]</span></h3>
-        <p><span class="verify">[[VERIFY: benefit 4 detail]]</span></p>
-      </li>
-    </ul>
   </div>
 </section>
 
-<!-- =================== 4. PLAN COMPARISON / PRICING ==================== -->
+<!-- ======================== PLANS &amp; PRICING ========================== -->
 <section id="plans" aria-labelledby="plans-title">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Plans &amp; pricing</span>
-      <h2 id="plans-title"><span class="verify">[[VERIFY: pricing section heading from source LP]]</span></h2>
-      <p><span class="verify">[[VERIFY: pricing section intro — source wording only]]</span></p>
+      <span class="eyebrow">Plans &amp; Pricing</span>
+      <h2 id="plans-title">Your Smile, Your Choice</h2>
     </div>
 
     <div class="plans reveal">
-      <!--
-        One .plan block per plan ACTUALLY offered on the source LP.
-        Card ids/data-plan must use the real plan names, e.g.
-        id="silver-plan-cta" data-plan="silver".
-        Only apply .plan-featured if the source LP itself highlights a plan.
-      -->
-      <article class="plan">
-        <h3 class="plan-name"><span class="verify">[[VERIFY: plan 1 name]]</span></h3>
-        <p class="plan-for"><span class="verify">[[VERIFY: who plan 1 is for]]</span></p>
-        <div class="plan-price">
-          <span class="price"><span class="verify">[[VERIFY: $price]]</span></span>
-          <span class="price-freq"><span class="verify">[[VERIFY: frequency]]</span></span>
+
+      <article class="plan plan-featured" aria-labelledby="silver-title">
+        <span class="plan-flag">Most Popular</span>
+        <h3 class="plan-name" id="silver-title">Silver Plan</h3>
+        <div class="plan-prices">
+          <div class="price-block">
+            <span class="price-who">Adult</span>
+            <span class="price">$349</span><span class="price-freq">/ yr</span>
+          </div>
+          <div class="price-block">
+            <span class="price-who">Child</span>
+            <span class="price">$299</span><span class="price-freq">/ yr</span>
+          </div>
         </div>
-        <ul class="plan-pricing-extra">
-          <li><span>Adult</span> <b><span class="verify">[[VERIFY: adult price]]</span></b></li>
-          <li><span>Child</span> <b><span class="verify">[[VERIFY: child price]]</span></b></li>
-          <li><span>Each additional member</span> <b><span class="verify">[[VERIFY: additional-member price]]</span></b></li>
-          <!-- Delete any row the source LP does not state. -->
-        </ul>
+        <p class="plan-note">Additional member: <b>$329 / yr</b></p>
+
         <ul class="plan-includes">
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span class="verify">[[VERIFY: exams included — quantity + wording]]</span></li>
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span class="verify">[[VERIFY: cleanings included — quantity + wording]]</span></li>
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span class="verify">[[VERIFY: x-rays included]]</span></li>
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span class="verify">[[VERIFY: discount % and the treatments it applies to]]</span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span><strong>2 periodic exams</strong> per year <span class="code">(D0120)</span></span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span><strong>2 limited/emergency exams</strong> per year <span class="code">(D0140)</span></span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span><strong>2 basic teeth cleanings</strong> <span class="code">(D1110)</span></span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span><strong>20% off all dental services</strong>, including cosmetic and implants &mdash; clear aligners not included</span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span><strong>Any required x-rays</strong> <span class="code">(D0274, D0210, D0220, D0330)</span></span></li>
         </ul>
+
         <div class="plan-limits">
           <h4>Important exclusions</h4>
-          <ul>
-            <li><span class="verify">[[VERIFY: exclusion, verbatim]]</span></li>
-            <li><span class="verify">[[VERIFY: exclusion, verbatim]]</span></li>
-          </ul>
+          <p>Does not include deep cleanings (scaling &amp; root planing). Not available to patients with periodontal disease.</p>
         </div>
-        <a id="plan-1-cta" class="btn btn-primary btn-block" data-conversion-type="plan"
-           data-plan="[[VERIFY: plan slug]]" href="#enroll">
-          <span class="verify">[[VERIFY: primary CTA wording]]</span>
-        </a>
+
+        <div class="plan-actions">
+          <a id="silver-plan-cta" class="btn btn-primary btn-block" data-conversion-type="phone" data-plan="silver"
+             href="tel:+19547100383">Get Started &mdash; Call 954-710-0383</a>
+          <a id="silver-plan-book-cta" class="btn btn-secondary btn-block" data-conversion-type="book" data-plan="silver"
+             href="https://app.nexhealth.com/appt/southfloridadentalcenter">Book Appointment</a>
+        </div>
       </article>
 
-      <article class="plan plan-featured">
-        <span class="plan-flag"><span class="verify">[[VERIFY: only if the LP flags this plan]]</span></span>
-        <h3 class="plan-name"><span class="verify">[[VERIFY: plan 2 name]]</span></h3>
-        <p class="plan-for"><span class="verify">[[VERIFY: who plan 2 is for]]</span></p>
-        <div class="plan-price">
-          <span class="price"><span class="verify">[[VERIFY: $price]]</span></span>
-          <span class="price-freq"><span class="verify">[[VERIFY: frequency]]</span></span>
+      <article class="plan" aria-labelledby="perio-title">
+        <h3 class="plan-name" id="perio-title">Periodontal Plan</h3>
+        <div class="plan-prices">
+          <div class="price-block">
+            <span class="price-who">Adult</span>
+            <span class="price">$479</span><span class="price-freq">/ yr</span>
+          </div>
         </div>
-        <ul class="plan-pricing-extra">
-          <li><span>Adult</span> <b><span class="verify">[[VERIFY: adult price]]</span></b></li>
-          <li><span>Child</span> <b><span class="verify">[[VERIFY: child price]]</span></b></li>
-          <li><span>Each additional member</span> <b><span class="verify">[[VERIFY: additional-member price]]</span></b></li>
-        </ul>
+        <p class="plan-note"><em>No additional member under this plan</em></p>
+
         <ul class="plan-includes">
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span class="verify">[[VERIFY: exams included]]</span></li>
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span class="verify">[[VERIFY: cleanings included]]</span></li>
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span class="verify">[[VERIFY: x-rays included]]</span></li>
-          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span class="verify">[[VERIFY: discount % and applicable treatments]]</span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span><strong>2 periodic exams</strong> per year <span class="code">(D0120)</span></span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span><strong>2 limited/emergency exams</strong> per year <span class="code">(D0140)</span></span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span><strong>20% off deep cleanings</strong> (scaling &amp; planing) and irrigation <span class="code">(D341, D4921)</span></span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span><strong>4 periodontal procedures</strong> per year</span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span><strong>20% off all dental services</strong>, including cosmetic and implants &mdash; clear aligners not included</span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span><strong>Any required x-rays</strong> <span class="code">(D0274, D0210, D0220, D0330)</span></span></li>
         </ul>
+
+        <!--
+          CLIENT DECISION REQUIRED — reproduced verbatim from the source LP.
+          On the source page the Periodontal Plan carries the same disclaimer
+          as the Silver Plan, which contradicts this plan's own stated
+          benefits (20% off deep cleanings, 4 periodontal procedures per
+          year) and would exclude the very patients the plan is built for.
+          It looks like a duplication error on the source, but the offer has
+          not been altered here. Confirm the correct wording with the
+          practice and replace this block before launch. See README.md.
+        -->
         <div class="plan-limits">
           <h4>Important exclusions</h4>
-          <ul>
-            <li><span class="verify">[[VERIFY: periodontal restriction, verbatim, if stated]]</span></li>
-            <li><span class="verify">[[VERIFY: clear-aligner exclusion, verbatim, if stated]]</span></li>
-          </ul>
+          <p>Does not include deep cleanings (scaling &amp; root planing). Not available to patients with periodontal disease.</p>
         </div>
-        <a id="plan-2-cta" class="btn btn-primary btn-block" data-conversion-type="plan"
-           data-plan="[[VERIFY: plan slug]]" href="#enroll">
-          <span class="verify">[[VERIFY: primary CTA wording]]</span>
-        </a>
+
+        <div class="plan-actions">
+          <a id="periodontal-plan-cta" class="btn btn-primary btn-block" data-conversion-type="phone" data-plan="periodontal"
+             href="tel:+19547100383">Get Started &mdash; Call 954-710-0383</a>
+          <a id="periodontal-plan-book-cta" class="btn btn-secondary btn-block" data-conversion-type="book" data-plan="periodontal"
+             href="https://app.nexhealth.com/appt/southfloridadentalcenter">Book Appointment</a>
+        </div>
       </article>
+
     </div>
 
-    <p class="terms-note">
-      <strong>Plan terms:</strong>
-      <span class="verify">[[VERIFY: eligibility requirements and disclaimer text, reproduced verbatim from the source LP]]</span>
-    </p>
+    <div class="plan-help">
+      <p>Not sure which plan fits your family? Call <a id="plan-help-phone-cta" data-conversion-type="phone" href="tel:+19547100383">954-710-0383</a> and we&rsquo;ll help you choose.</p>
+    </div>
   </div>
 </section>
 
-<!-- ====================== 5. HOW THE PLAN WORKS ======================== -->
+<!-- ======================= HOW THE PLAN WORKS ========================== -->
 <section class="alt-bg" aria-labelledby="how-title">
   <div class="container">
     <div class="section-head">
-      <h2 id="how-title">How the plan works</h2>
-      <p><span class="verify">[[VERIFY: intro line, or delete. Steps below must mirror the process the source LP actually describes.]]</span></p>
+      <h2 id="how-title">How Our Dental Plans Florida Work</h2>
+      <p>Joining is as simple as 1-2-3!</p>
     </div>
     <ol class="steps reveal">
       <li class="step">
         <span class="step-num">01</span>
-        <h3><span class="verify">[[VERIFY: step 1 title]]</span></h3>
-        <p><span class="verify">[[VERIFY: step 1 detail]]</span></p>
+        <h3>You pay one low annual fee</h3>
+        <p>There are no monthly bills or hidden costs involved, making it easier for you to budget for your oral health.</p>
       </li>
       <li class="step">
         <span class="step-num">02</span>
-        <h3><span class="verify">[[VERIFY: step 2 title]]</span></h3>
-        <p><span class="verify">[[VERIFY: step 2 detail]]</span></p>
+        <h3>You will get treatment for 12 consecutive months</h3>
+        <p>From the day you join, your dental health is our priority for an entire year.</p>
       </li>
       <li class="step">
         <span class="step-num">03</span>
-        <h3><span class="verify">[[VERIFY: step 3 title]]</span></h3>
-        <p><span class="verify">[[VERIFY: step 3 detail]]</span></p>
+        <h3>You will receive discounts on dental procedures and FREE basic services</h3>
+        <p>Receive generous discounts and enjoy FREE X-rays, exams, and basic cleanings.</p>
       </li>
     </ol>
   </div>
 </section>
 
-<!-- ============= 6. WHY CONSIDER AN IN-HOUSE DENTAL PLAN? ============== -->
-<section aria-labelledby="why-title">
+<!-- ==================== WHY CHOOSE / OUR COMMITMENT ==================== -->
+<section aria-labelledby="commit-title">
   <div class="container">
     <div class="section-head">
-      <h2 id="why-title">Why consider an in-house dental plan?</h2>
-      <p><span class="verify">[[VERIFY: intro from source LP, or delete this line]]</span></p>
+      <span class="eyebrow">Our Commitment</span>
+      <h2 id="commit-title">Why Choose South Florida Dental Plans?</h2>
     </div>
-    <ul class="grid grid-3 reveal">
+    <ul class="commit reveal">
+      <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>No Missing Tooth Clauses</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>No Deductibles</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>No Annual Maximum Benefit</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>No Alternative Material Downgrade</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>No Restrictions On Cosmetic Options</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>No Limitations On Any Procedures</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ==================== AN INVESTMENT IN YOUR HEALTH =================== -->
+<section class="alt-bg" aria-labelledby="invest-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="invest-title">An Investment in Your Health</h2>
+      <p>Oral health is crucial, but quality dental care can be costly, and insurance isn&rsquo;t always an option. That&rsquo;s why our dental plans at South Florida Dental Center are designed to fill the gap. Here are some benefits to consider:</p>
+    </div>
+    <ul class="grid grid-4 reveal">
       <li class="card">
-        <h3><span class="verify">[[VERIFY: reason 1 — from LP copy only]]</span></h3>
-        <p><span class="verify">[[VERIFY: reason 1 detail]]</span></p>
+        <div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></div>
+        <h3>Proactive Care Saves Money</h3>
+        <p>Think about it: a simple bi-annual cleaning is far less expensive and invasive than waiting until you need a root canal or, even worse, an emergency extraction. Dental plans Florida residents can trust will help you stay on top of your oral health.</p>
       </li>
       <li class="card">
-        <h3><span class="verify">[[VERIFY: reason 2]]</span></h3>
-        <p><span class="verify">[[VERIFY: reason 2 detail]]</span></p>
+        <div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></div>
+        <h3>Regular Check-Ups for Early Detection</h3>
+        <p>Oral diseases often have subtle symptoms that only become noticeable when they reach a severe stage. Regular dental check-ups allow for early detection and treatment, preventing the need for more complicated procedures down the line.</p>
       </li>
       <li class="card">
-        <h3><span class="verify">[[VERIFY: reason 3]]</span></h3>
-        <p><span class="verify">[[VERIFY: reason 3 detail]]</span></p>
+        <div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></div>
+        <h3>Improved Overall Health</h3>
+        <p>Did you know that poor oral health can contribute to conditions like heart disease, diabetes, and respiratory issues? An investment in a dental plan is, in many ways, an investment in your overall well-being.</p>
+      </li>
+      <li class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></div>
+        <h3>Peace of Mind</h3>
+        <p>No one likes surprise medical bills. With a dental plan, you&rsquo;ll know exactly what you&rsquo;re getting and how much it will cost, providing you with financial predictability and peace of mind.</p>
       </li>
     </ul>
   </div>
 </section>
 
-<!--
-  ==================== 7. PLAN VS TRADITIONAL INSURANCE ==================
-  DELIBERATELY NOT BUILT.
-  The brief: build this only if the source LP explicitly provides every cell,
-  otherwise skip the section completely. Source facts were unavailable, so no
-  comparison table exists here. If the LP does state a factual comparison,
-  add a <table> with <caption>, <thead> scope="col" headers and a row per
-  feature — and nothing that is not printed on the LP.
-  ======================================================================== -->
-
-<!-- ======================= 8. MID-PAGE CTA ============================= -->
+<!-- ========================== MID-PAGE CTA ============================= -->
 <section class="cta-band" aria-labelledby="midcta-title">
   <div class="container cta-inner">
-    <h2 id="midcta-title"><span class="verify">[[VERIFY: mid-page CTA headline — reuse campaign messaging]]</span></h2>
-    <p><span class="verify">[[VERIFY: supporting line from the source LP]]</span></p>
+    <h2 id="midcta-title">Save on Dental Care in Coral Springs, FL</h2>
+    <p>Not sure which plan fits your family? Call and we&rsquo;ll help you choose.</p>
     <div class="cta-actions">
-      <a id="mid-plan-cta" class="btn btn-primary" data-conversion-type="plan" href="#enroll">
-        <span class="verify">[[VERIFY: primary CTA wording]]</span>
-      </a>
-      <a id="mid-phone-cta" class="btn btn-ghost-light" data-conversion-type="phone" href="tel:[[VERIFY-PHONE-E164]]">
+      <a id="mid-phone-cta" class="btn btn-primary" data-conversion-type="phone" href="tel:+19547100383">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.2 2.3 3.1 4.2 5.4 5.4l1.8-1.8c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V19c0 .6-.4 1-1 1-8.3 0-15-6.7-15-15 0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .7-.2 1l-1.8 1.8z"/></svg>
-        Call <span class="verify">[[VERIFY: phone]]</span>
+        CALL NOW 954-710-0383
       </a>
+      <a id="mid-book-cta" class="btn btn-ghost-light" data-conversion-type="book"
+         href="https://app.nexhealth.com/appt/southfloridadentalcenter">Book Appointment</a>
     </div>
   </div>
 </section>
 
-<!-- ============ 9. TRUST / WHY SOUTH FLORIDA DENTAL CENTER ============= -->
-<section class="alt-bg" aria-labelledby="trust-title">
+<!-- ========================= ABOUT THE PRACTICE ======================== -->
+<section aria-labelledby="about-title">
   <div class="container trust-grid">
-    <div class="trust-media">
-      <img src="assets/images/doctor.webp"
-           alt="[[VERIFY: doctor name and role, exactly as the source LP states it]]"
+    <div class="trust-media" data-fallback-hide>
+      <img src="assets/images/office.webp"
+           alt="Welcoming modern dental office interior at South Florida Dental Center"
            width="720" height="720" loading="lazy" decoding="async">
     </div>
     <div>
-      <span class="eyebrow">About the practice</span>
-      <h2 id="trust-title"><span class="verify">[[VERIFY: trust section heading from source LP]]</span></h2>
-      <p><span class="verify">[[VERIFY: practice / doctor copy, from the source LP only. No badges, awards, rankings or patient counts unless the LP prints them.]]</span></p>
-      <ul class="hero-points">
-        <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span class="verify">[[VERIFY: trust point actually present on the LP]]</span></li>
-        <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span class="verify">[[VERIFY: trust point actually present on the LP]]</span></li>
+      <span class="eyebrow">About Our Practice</span>
+      <h2 id="about-title">Trusted Care in Coral Springs</h2>
+      <p>At South Florida Dental Center, exceptional dentistry meets a genuinely comfortable experience. Dr. Daniel Cohen and our Coral Springs team provide comprehensive care, including preventive, restorative, and cosmetic dentistry, all in a modern, welcoming environment designed with your comfort in mind.</p>
+      <p>With advanced technology like 3D CAT scans and digital X-rays, a friendly and experienced staff, and hundreds of five-star reviews, we make it easy to look forward to your visit. Contact us today and see why patients across Coral Springs trust us with their smiles.</p>
+      <ul class="creds">
+        <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Compassionate &amp; Welcoming Environment</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Modern Treatment Solutions</li>
       </ul>
-      <a id="trust-plan-cta" class="btn btn-primary" data-conversion-type="plan" href="#enroll">
-        <span class="verify">[[VERIFY: primary CTA wording]]</span>
-      </a>
     </div>
   </div>
 </section>
 
-<!-- ===================== 10. REVIEWS / TESTIMONIALS ==================== -->
-<!-- If the source LP carries no testimonials, DELETE this entire section.
-     Reviews must be reproduced verbatim: wording, reviewer name, rating and
-     source exactly as shown. No invented reviews, ratings or totals. -->
+<!-- ========================= MEET THE DENTIST ========================== -->
+<section class="alt-bg" aria-labelledby="doctor-title">
+  <div class="container trust-grid">
+    <div class="trust-media" data-fallback-hide>
+      <img src="assets/images/doctor.webp"
+           alt="Dr. Daniel Cohen, General &amp; Cosmetic Dentist at South Florida Dental Center"
+           width="720" height="720" loading="lazy" decoding="async">
+    </div>
+    <div>
+      <span class="eyebrow">General &amp; Cosmetic Dentist</span>
+      <h2 id="doctor-title">Meet Dr. Daniel Cohen</h2>
+      <p>Dr. Daniel Cohen earned his Doctorate of Dental Surgery from New York University College of Dentistry after completing his Biology degree at Pennsylvania State University. He is dedicated to providing personalized dental care with a strong focus on aesthetics, precision, and patient comfort. Outside the office, he enjoys painting, exercising, and spending time with his family.</p>
+      <ul class="creds">
+        <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Doctorate of Dental Surgery, NYU</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>B.S. in Biology, Penn State University</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Focus on Aesthetics &amp; Patient Comfort</li>
+      </ul>
+      <a id="doctor-book-cta" class="btn btn-primary" data-conversion-type="book"
+         href="https://app.nexhealth.com/appt/southfloridadentalcenter">Book Appointment</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= REVIEWS =============================== -->
 <section aria-labelledby="reviews-title">
   <div class="container">
     <div class="section-head">
-      <h2 id="reviews-title"><span class="verify">[[VERIFY: reviews heading from source LP]]</span></h2>
+      <span class="eyebrow">Real Patient Experiences</span>
+      <h2 id="reviews-title">What Our Patients Say</h2>
     </div>
+
+    <p class="review-summary">
+      <span class="review-score">4.9</span>
+      <span class="stars" role="img" aria-label="4.9 out of 5 stars">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.7-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.5 4.8 1.7 7z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.7-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.5 4.8 1.7 7z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.7-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.5 4.8 1.7 7z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.7-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.5 4.8 1.7 7z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.7-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.5 4.8 1.7 7z"/></svg>
+      </span>
+      <span class="review-count">(333)</span>
+    </p>
+
     <div class="reviews reveal">
+
       <figure class="review">
-        <!-- Include .review-stars ONLY if the LP explicitly shows a rating. -->
-        <blockquote><span class="verify">[[VERIFY: review 1, verbatim]]</span></blockquote>
-        <figcaption class="review-meta">
-          <cite><span class="verify">[[VERIFY: reviewer name as shown]]</span></cite>
-          <span class="verify">[[VERIFY: review source, only if shown]]</span>
-        </figcaption>
+        <p class="review-body" data-collapsible>I have been coming here for over 10 years and the staff is amazing even when Dr. Cohen took over everything transitioned smoothly. I would highly recommend this place. I had to remove a tooth and the staff made it as painless as possible.</p>
+        <figcaption class="review-meta"><cite>melissa jean</cite>Posted on Google</figcaption>
       </figure>
+
       <figure class="review">
-        <blockquote><span class="verify">[[VERIFY: review 2, verbatim]]</span></blockquote>
-        <figcaption class="review-meta">
-          <cite><span class="verify">[[VERIFY: reviewer name as shown]]</span></cite>
-          <span class="verify">[[VERIFY: review source, only if shown]]</span>
-        </figcaption>
+        <p class="review-body">Dr Dan is a caring very gentle dentist</p>
+        <figcaption class="review-meta"><cite>Ginagg</cite>Posted on Google</figcaption>
       </figure>
+
       <figure class="review">
-        <blockquote><span class="verify">[[VERIFY: review 3, verbatim]]</span></blockquote>
-        <figcaption class="review-meta">
-          <cite><span class="verify">[[VERIFY: reviewer name as shown]]</span></cite>
-          <span class="verify">[[VERIFY: review source, only if shown]]</span>
-        </figcaption>
+        <p class="review-body">Dr. Cohen Is excellent</p>
+        <figcaption class="review-meta"><cite>Teki COUCH</cite>Posted on Google</figcaption>
       </figure>
+
+      <figure class="review">
+        <p class="review-body" data-collapsible>I came in as a new patient and was so impressed. the hygienist is so gentle and the dentist explained everything in such detail. The manager was excellent as she was able to get me in at a time that worked for my schedule. I will be referring all my friends and family to this office.</p>
+        <figcaption class="review-meta"><cite>bianca guerra</cite>Posted on Google</figcaption>
+      </figure>
+
+      <figure class="review">
+        <p class="review-body" data-collapsible>Update Again! Dr Cohen is awesome along with his staff!! Update-Great Dentist/ Great Staff! I&rsquo;m new to the practice. From the minute I walked in, I was greeted with smiles. Dominique, hygienists, is very nice, gentle and made me feel comfortable. Dr. Cohen made me feel at ease. I am confident that I&rsquo;m at the right dentist. Also a shout out to Carolyn and Dawn annd Dominique .Update- I&rsquo;m a few visits in and still impressed with this office. Thank you to my son who recommended Dr. Cohen.</p>
+        <figcaption class="review-meta"><cite>Lisa Militano</cite>Posted on Google</figcaption>
+      </figure>
+
+      <figure class="review">
+        <p class="review-body" data-collapsible>Dr. Cohen and his team ( Dawn, Carolyn, and Dominique) are the best. Dr. Cohen is amazing. Professional, friendly, gentle, and caring. I had 2 extractions and he was done before I even knew he started. Dawn is fantastic... she explains all the procedures and insurance information perfectly. She is honest and caring. I had a emergency and she got me right in. Carolyn is a great assistant. She is friendly, and professional. And Dominique is the best. She has been cleaning my teeth for almost 20 years. For all your dental needs minor or major this is the only place to go.</p>
+        <figcaption class="review-meta"><cite>Steve DiMaggio</cite>Posted on Google</figcaption>
+      </figure>
+
+      <figure class="review">
+        <p class="review-body" data-collapsible>The entire team was friendly, caring, and professional. They made me feel comfortable, explained everything clearly, and provided excellent service. I highly recommend this dental office</p>
+        <figcaption class="review-meta"><cite>Robert Rlondono</cite>Posted on Google</figcaption>
+      </figure>
+
+      <figure class="review">
+        <p class="review-body">Great people and service. Thanks for always taking care of me!</p>
+        <figcaption class="review-meta"><cite>Harrison Strober</cite>Posted on Google</figcaption>
+      </figure>
+
     </div>
   </div>
 </section>
 
-<!-- =================== 11. IMPORTANT PLAN DETAILS ====================== -->
+<!-- ====================== IMPORTANT PLAN DETAILS ======================= -->
 <section class="alt-bg" aria-labelledby="details-title">
   <div class="container">
     <div class="section-head">
       <h2 id="details-title">Important plan details</h2>
-      <p>Everything below is part of the plan's stated terms.</p>
+      <p>These are the plan&rsquo;s stated terms. Please review them before you enroll.</p>
     </div>
     <div class="details-grid reveal">
       <div class="detail-card">
-        <h3>What the plan does not cover</h3>
+        <h3>What the plans exclude</h3>
         <ul>
-          <li><span class="verify">[[VERIFY: excluded procedure, verbatim]]</span></li>
-          <li><span class="verify">[[VERIFY: clear-aligner exclusion, verbatim, if stated]]</span></li>
-          <li><span class="verify">[[VERIFY: deep-cleaning / periodontal restriction, verbatim, if stated]]</span></li>
+          <li>Clear aligners are not included in the 20% off all dental services.</li>
+          <li>Does not include deep cleanings (scaling &amp; root planing).</li>
+          <li>Not available to patients with periodontal disease.</li>
+          <li>No additional member under the Periodontal Plan.</li>
         </ul>
       </div>
       <div class="detail-card">
-        <h3>Eligibility &amp; membership</h3>
+        <h3>Membership &amp; what&rsquo;s covered</h3>
         <ul>
-          <li><span class="verify">[[VERIFY: eligibility requirement, verbatim]]</span></li>
-          <li><span class="verify">[[VERIFY: membership duration, verbatim]]</span></li>
-          <li><span class="verify">[[VERIFY: member restriction, verbatim, if stated]]</span></li>
+          <li>One low annual fee &mdash; no monthly bills or hidden costs.</li>
+          <li>Treatment for 12 consecutive months from the day you join.</li>
+          <li>Silver Plan: $349/yr adult, $299/yr child, $329/yr each additional member.</li>
+          <li>Periodontal Plan: $479/yr adult.</li>
+          <li>20% off all dental services, including cosmetic and implants.</li>
         </ul>
       </div>
     </div>
-    <p class="terms-note">
-      <span class="verify">[[VERIFY: full disclaimer text from the source LP, reproduced without edits]]</span>
-    </p>
   </div>
 </section>
 
-<!-- ============================== 12. FAQ ============================== -->
-<!-- If the source LP has no FAQ, DELETE this entire section. Do not write
-     questions or answers from assumption. -->
-<section aria-labelledby="faq-title">
-  <div class="container">
-    <div class="section-head">
-      <h2 id="faq-title">Frequently asked questions</h2>
-    </div>
-    <div class="faq">
-      <div class="faq-item">
-        <h3 style="margin:0">
-          <button class="faq-q" id="faq-q1" type="button" aria-expanded="false" aria-controls="faq-a1">
-            <span class="verify">[[VERIFY: FAQ question 1 from source LP]]</span>
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-        </h3>
-        <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1">
-          <div><p><span class="verify">[[VERIFY: FAQ answer 1, verbatim]]</span></p></div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <h3 style="margin:0">
-          <button class="faq-q" id="faq-q2" type="button" aria-expanded="false" aria-controls="faq-a2">
-            <span class="verify">[[VERIFY: FAQ question 2 from source LP]]</span>
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-        </h3>
-        <div class="faq-a" id="faq-a2" role="region" aria-labelledby="faq-q2">
-          <div><p><span class="verify">[[VERIFY: FAQ answer 2, verbatim]]</span></p></div>
-        </div>
-      </div>
-      <div class="faq-item">
-        <h3 style="margin:0">
-          <button class="faq-q" id="faq-q3" type="button" aria-expanded="false" aria-controls="faq-a3">
-            <span class="verify">[[VERIFY: FAQ question 3 from source LP]]</span>
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-        </h3>
-        <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3">
-          <div><p><span class="verify">[[VERIFY: FAQ answer 3, verbatim]]</span></p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 13. ENROLL FORM + LOCATION / CONTACT =================== -->
-<section id="enroll" class="alt-bg" aria-labelledby="enroll-title">
-  <div class="container contact-grid">
-
-    <div class="form-card">
-      <span class="eyebrow">Get started</span>
-      <h2 id="enroll-title"><span class="verify">[[VERIFY: form heading — match the campaign's CTA wording]]</span></h2>
-      <p><span class="verify">[[VERIFY: short form intro, source wording only]]</span></p>
-
-      <!--
-        DEVELOPER PLACEHOLDER — NOT A WORKING ENDPOINT.
-        The source LP's real form action / booking / scheduling destination
-        could not be read (host blocked). Replace action="" with the real
-        endpoint, or replace this whole card with the practice's existing
-        booking widget. Field set below must be reduced to exactly the fields
-        the existing form collects — do not add fields, and do not collect
-        medical information unless the existing workflow requires it.
-      -->
-      <form id="enroll-form" action="" method="post" novalidate
-            data-conversion-type="form" data-endpoint-status="placeholder">
-
-        <div class="field">
-          <label for="f-name">Full name <span class="req" aria-hidden="true">*</span></label>
-          <input id="f-name" name="name" type="text" autocomplete="name" required
-                 aria-describedby="f-name-err">
-          <span class="field-error" id="f-name-err">Please enter your name.</span>
-        </div>
-
-        <div class="field">
-          <label for="f-phone">Phone <span class="req" aria-hidden="true">*</span></label>
-          <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required
-                 aria-describedby="f-phone-err">
-          <span class="field-error" id="f-phone-err">Please enter a phone number we can reach you on.</span>
-        </div>
-
-        <div class="field">
-          <label for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
-          <input id="f-email" name="email" type="email" inputmode="email" autocomplete="email" required
-                 aria-describedby="f-email-err">
-          <span class="field-error" id="f-email-err">Please enter a valid email address.</span>
-        </div>
-
-        <div class="field">
-          <label for="f-plan">Plan you're interested in</label>
-          <select id="f-plan" name="plan">
-            <option value="">Not sure yet</option>
-            <option value="[[VERIFY: plan slug]]">[[VERIFY: plan 1 name]]</option>
-            <option value="[[VERIFY: plan slug]]">[[VERIFY: plan 2 name]]</option>
-          </select>
-          <span class="hint">Options must match the real plan names on the campaign LP.</span>
-        </div>
-
-        <button id="form-submit-cta" class="btn btn-primary btn-block" type="submit"
-                data-conversion-type="form">
-          <span class="verify">[[VERIFY: submit CTA wording]]</span>
-        </button>
-
-        <p class="form-consent"><span class="verify">[[VERIFY: consent / privacy line — reuse the existing form's wording; do not draft new legal text]]</span></p>
-        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-      </form>
-    </div>
-
-    <div class="info-card">
-      <h2 class="visually-hidden">Practice location and contact details</h2>
-
-      <div class="info-block">
-        <h3>Call the office</h3>
-        <a id="contact-phone-cta" data-conversion-type="phone" href="tel:[[VERIFY-PHONE-E164]]">
-          <span class="verify">[[VERIFY: phone — use the number the campaign LP points PPC traffic to. If new-patient and existing-patient numbers are distinguished, preserve both exactly.]]</span>
-        </a>
-      </div>
-
-      <div class="info-block">
-        <h3>Address</h3>
-        <p><span class="verify">[[VERIFY: address exactly as written on the source LP]]</span></p>
-      </div>
-
-      <div class="info-block">
-        <h3>Office hours</h3>
-        <ul class="hours">
-          <!-- Include ONLY if the source LP publishes hours; delete this block otherwise. -->
-          <li><span>Monday</span><span class="verify">[[VERIFY]]</span></li>
-          <li><span>Tuesday</span><span class="verify">[[VERIFY]]</span></li>
-          <li><span>Wednesday</span><span class="verify">[[VERIFY]]</span></li>
-          <li><span>Thursday</span><span class="verify">[[VERIFY]]</span></li>
-          <li><span>Friday</span><span class="verify">[[VERIFY]]</span></li>
-          <li><span>Saturday</span><span class="verify">[[VERIFY]]</span></li>
-          <li><span>Sunday</span><span class="verify">[[VERIFY]]</span></li>
-        </ul>
-      </div>
-
-      <div class="info-block">
-        <h3>Email</h3>
-        <p><span class="verify">[[VERIFY: email — only if present on the source LP, otherwise delete this block]]</span></p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- =========================== 14. FINAL CTA =========================== -->
+<!-- ============================ FINAL CTA ============================== -->
 <section class="cta-band" aria-labelledby="finalcta-title">
   <div class="container cta-inner">
-    <h2 id="finalcta-title"><span class="verify">[[VERIFY: final CTA headline — reuse the campaign's own value proposition. Do not introduce a new offer or discount.]]</span></h2>
-    <p><span class="verify">[[VERIFY: supporting copy from the source LP]]</span></p>
+    <h2 id="finalcta-title">Unlock Your Healthy Smile with Our Dental Plans</h2>
+    <p>Is your path to a healthier, more vibrant smile waiting behind one of our tailored dental plans? Don&rsquo;t delay!</p>
     <div class="cta-actions">
-      <a id="final-plan-cta" class="btn btn-primary" data-conversion-type="plan" href="#enroll">
-        <span class="verify">[[VERIFY: primary CTA wording]]</span>
-      </a>
-      <a id="final-phone-cta" class="btn btn-ghost-light" data-conversion-type="phone" href="tel:[[VERIFY-PHONE-E164]]">
+      <a id="final-phone-cta" class="btn btn-primary" data-conversion-type="phone" href="tel:+19547100383">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.2 2.3 3.1 4.2 5.4 5.4l1.8-1.8c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V19c0 .6-.4 1-1 1-8.3 0-15-6.7-15-15 0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .7-.2 1l-1.8 1.8z"/></svg>
-        Call <span class="verify">[[VERIFY: phone]]</span>
+        CALL NOW 954-710-0383
       </a>
+      <a id="final-book-cta" class="btn btn-ghost-light" data-conversion-type="book"
+         href="https://app.nexhealth.com/appt/southfloridadentalcenter">Book Appointment</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ LOCATION =============================== -->
+<section id="location" aria-labelledby="location-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="location-title">Location</h2>
+    </div>
+    <div class="contact-grid">
+
+      <div class="info-card">
+        <h3>Address</h3>
+        <address>
+          7522 Wiles Rd Ste #104,<br>
+          Coral Springs, FL 33067
+        </address>
+        <p style="margin:14px 0 22px">
+          <a id="directions-cta" data-conversion-type="directions" target="_blank" rel="noopener"
+             href="https://www.google.com/maps/dir//South+Florida+Dental+Center,+7522+Wiles+Rd+Ste+%23104,+Coral+Springs,+FL+33067,+United+States/@26.2861349,-80.2283731,16z/data=!4m7!1m0!1m5!1m1!1s0x88d91b2c59031a55:0x30e01fb99eabc77!2m2!1d-80.2272144!2d26.2862984">Directions</a>
+        </p>
+        <h3>Call the office</h3>
+        <a id="location-phone-cta" class="big-link" data-conversion-type="phone" href="tel:+19547100383">954-710-0383</a>
+      </div>
+
+      <div class="info-card">
+        <h3>Hours</h3>
+        <ul class="hours">
+          <li><span>Monday</span><time>9 am&ndash;2 pm</time></li>
+          <li><span>Tuesday</span><time>10 am&ndash;7 pm</time></li>
+          <li><span>Wednesday</span><time>9 am&ndash;5 pm</time></li>
+          <li><span>Thursday</span><time>10 am&ndash;7 pm</time></li>
+          <li><span>Friday</span><span class="closed">Closed</span></li>
+          <li><span>Saturday</span><time>9 am&ndash;2 pm</time></li>
+          <li><span>Sunday</span><span class="closed">Closed</span></li>
+        </ul>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1059,113 +945,123 @@ section{padding:clamp(48px,7vw,84px) 0}
 <footer class="site-footer">
   <div class="container footer-inner">
     <div>
-      <img src="assets/images/logo.svg" alt="South Florida Dental Center" width="200" height="62" loading="lazy" decoding="async">
+      <span data-fallback-text><img src="assets/images/logo.svg" alt="South Florida Dental Center" width="210" height="66" loading="lazy" decoding="async"></span>
       <p class="footer-legal" style="margin-top:14px">
-        <span class="verify">[[VERIFY: address]]</span> &middot;
-        <a data-conversion-type="phone" id="footer-phone-cta" href="tel:[[VERIFY-PHONE-E164]]"><span class="verify">[[VERIFY: phone]]</span></a>
+        7522 Wiles Rd Ste #104, Coral Springs, FL 33067 &middot;
+        <a id="footer-phone-cta" data-conversion-type="phone" href="tel:+19547100383">954-710-0383</a><br>
+        <a href="https://www.facebook.com/southfloridadentalcenter" target="_blank" rel="noopener">Facebook</a>
       </p>
     </div>
     <p class="footer-legal">
-      &copy; <span id="year">2026</span> South Florida Dental Center.<br>
-      <span class="verify">[[VERIFY: any legal / disclaimer line the source LP shows in its footer]]</span>
+      &copy; 2026 South Florida Dental Center. All rights reserved.
     </p>
   </div>
 </footer>
 
-<!-- ================= MOBILE STICKY CONVERSION BAR ====================== -->
+<!-- ==================== MOBILE STICKY CONVERSION BAR =================== -->
 <div class="sticky-cta" role="group" aria-label="Contact South Florida Dental Center">
-  <a id="sticky-mobile-call" class="btn btn-secondary" data-conversion-type="phone" href="tel:[[VERIFY-PHONE-E164]]">
+  <a id="sticky-mobile-call" class="btn btn-secondary" data-conversion-type="phone" href="tel:+19547100383">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.2 2.3 3.1 4.2 5.4 5.4l1.8-1.8c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V19c0 .6-.4 1-1 1-8.3 0-15-6.7-15-15 0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .7-.2 1l-1.8 1.8z"/></svg>
-    Call now
+    Call Now
   </a>
-  <a id="sticky-mobile-plan" class="btn btn-primary" data-conversion-type="plan" href="#enroll">
-    <span class="verify">[[VERIFY: primary CTA wording]]</span>
-  </a>
+  <a id="sticky-mobile-book" class="btn btn-primary" data-conversion-type="book"
+     href="https://app.nexhealth.com/appt/southfloridadentalcenter">Book Appointment</a>
 </div>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Dentist",
+  "name":"South Florida Dental Center",
+  "url":"https://southfloridadentalcenter.com/",
+  "telephone":"+1-954-710-0383",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"7522 Wiles Rd Ste #104",
+    "addressLocality":"Coral Springs",
+    "addressRegion":"FL",
+    "postalCode":"33067",
+    "addressCountry":"US"
+  },
+  "sameAs":["https://www.facebook.com/southfloridadentalcenter"],
+  "openingHoursSpecification":[
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Monday","opens":"09:00","closes":"14:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Tuesday","opens":"10:00","closes":"19:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"09:00","closes":"17:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Thursday","opens":"10:00","closes":"19:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"14:00"}
+  ]
+}
+</script>
 
 <script>
 /* ==========================================================================
-   Minimal vanilla JS. No dependencies. Deferred to the end of the document.
+   Minimal vanilla JS. No dependencies.
    ========================================================================== */
 (function () {
   'use strict';
   document.body.classList.remove('no-js');
-  var yr = document.getElementById('year');
-  if (yr) { yr.textContent = new Date().getFullYear(); }
 
-  /* ---- FAQ accordion: keyboard accessible, ARIA-correct ---------------- */
-  var questions = document.querySelectorAll('.faq-q');
-  Array.prototype.forEach.call(questions, function (btn) {
-    btn.addEventListener('click', function () {
-      var item = btn.closest('.faq-item');
-      var open = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!open));
-      item.classList.toggle('open', !open);
-    });
+  /* ---- Hide image wrappers whose asset is missing ---------------------
+     Keeps the layout clean until the authentic photography is dropped in,
+     instead of rendering broken-image placeholders. Safe to keep: it only
+     fires on a genuine load error. */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-fallback-hide] img'), function (img) {
+    function hide() { img.parentNode.classList.add('is-missing'); }
+    if (img.complete && img.naturalWidth === 0) { hide(); }
+    img.addEventListener('error', hide);
   });
 
-  /* ---- Section reveal: one observer, disconnects per element ----------- */
+  /* ---- Logo: fall back to the practice name as styled text ------------- */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-fallback-text] img'), function (img) {
+    function swap() {
+      if (!img.parentNode) { return; }
+      var span = document.createElement('span');
+      span.className = 'logo-text';
+      span.textContent = img.alt;
+      img.parentNode.replaceChild(span, img);
+    }
+    if (img.complete && img.naturalWidth === 0) { swap(); }
+    img.addEventListener('error', swap);
+  });
+
+  /* ---- Long reviews: accessible expand/collapse ------------------------
+     Mirrors the source page's own "Read more" behaviour. Review wording is
+     never altered — only visually clamped. Without JS the full text shows. */
+  Array.prototype.forEach.call(document.querySelectorAll('.review-body[data-collapsible]'), function (body, i) {
+    body.classList.add('clamped');
+    if (body.scrollHeight <= body.clientHeight + 2) {
+      body.classList.remove('clamped');
+      return;
+    }
+    var id = 'review-body-' + i;
+    body.id = id;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'btn btn-link review-more';
+    btn.textContent = 'Read more';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', id);
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      body.classList.toggle('clamped', open);
+      btn.textContent = open ? 'Read more' : 'Show less';
+    });
+    body.parentNode.insertBefore(btn, body.nextSibling);
+  });
+
+  /* ---- Section reveal -------------------------------------------------- */
   var reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && reveals.length) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
       });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
     Array.prototype.forEach.call(reveals, function (el) { io.observe(el); });
   } else {
     Array.prototype.forEach.call(reveals, function (el) { el.classList.add('in'); });
-  }
-
-  /* ---- Form validation: visible, accessible, no libraries -------------- */
-  var form = document.getElementById('enroll-form');
-  if (form) {
-    var status = document.getElementById('form-status');
-
-    function validateField(input) {
-      var wrap = input.closest('.field');
-      var ok = input.checkValidity() && input.value.trim() !== '';
-      if (input.type === 'tel') {
-        ok = ok && input.value.replace(/\D/g, '').length >= 10;
-      }
-      wrap.classList.toggle('invalid', !ok);
-      input.setAttribute('aria-invalid', ok ? 'false' : 'true');
-      return ok;
-    }
-
-    var required = form.querySelectorAll('[required]');
-    Array.prototype.forEach.call(required, function (input) {
-      input.addEventListener('blur', function () { validateField(input); });
-      input.addEventListener('input', function () {
-        if (input.closest('.field').classList.contains('invalid')) { validateField(input); }
-      });
-    });
-
-    form.addEventListener('submit', function (e) {
-      var firstBad = null;
-      Array.prototype.forEach.call(required, function (input) {
-        if (!validateField(input) && !firstBad) { firstBad = input; }
-      });
-
-      if (firstBad) {
-        e.preventDefault();
-        firstBad.focus();
-        status.className = 'form-status show';
-        status.style.color = '#b42318';
-        status.textContent = 'Please check the highlighted fields.';
-        return;
-      }
-
-      /* The form action is an unset developer placeholder. Rather than
-         pretending a submission succeeded, block it and say so. Remove this
-         guard once the real endpoint is wired in. */
-      if (!form.getAttribute('action')) {
-        e.preventDefault();
-        status.className = 'form-status show';
-        status.style.color = '#b42318';
-        status.textContent = 'Form endpoint not configured — connect the practice’s real booking destination before launch.';
-      }
-    });
   }
 })();
 </script>
